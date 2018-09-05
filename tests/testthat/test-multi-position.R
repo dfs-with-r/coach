@@ -1,16 +1,18 @@
 context("multi-position")
 
 # test data
-data <- tibble::tibble(
+n <- 4
+data <- data.frame(
   player = c("alice", "bob", "carol", "dan"),
   team_id = c("alpha", "beta", "gamma", "gamma"),
   opp_team_id = c("beta", "alpha", "omega", "omega"),
   position = c("P", "3B/OF", "2B", "3B"),
   fpts_proj = c(30, 20, 10, 5),
-  salary = rep(33, 4),
-  size = rep(1, 4),
-  rowid = seq_along(player),
-  id = seq_along(player))
+  salary = rep(33, n),
+  size = rep(1, n),
+  rowid = seq_len(n),
+  id = seq_len(n),
+  stringsAsFactors = FALSE)
 
 test_that("draftkings multi-position eligibility works", {
   # data needs to have one position per player

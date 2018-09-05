@@ -1,25 +1,30 @@
 context("constraints-mlb")
 
 # test data
-data_opp_teams <- tibble::tibble(player = c("alice", "bob", "carol", "dan"),
-                       team_id = c("alpha", "beta", "gamma", "gamma"),
-                       opp_team_id = c("beta", "alpha", "omega", "omega"),
-                       position = c("P", "3B", "2B", "3B"),
-                       fpts_proj = c(30, 20, 10, 5),
-                       salary = rep(33, 4),
-                       size = rep(1, 4),
-                       rowid = seq_along(player),
-                       id = seq_along(player))
+n <- 4
+data_opp_teams <- data.frame(
+  player = c("alice", "bob", "carol", "dan"),
+  team_id = c("alpha", "beta", "gamma", "gamma"),
+  opp_team_id = c("beta", "alpha", "omega", "omega"),
+  position = c("P", "3B", "2B", "3B"),
+  fpts_proj = c(30, 20, 10, 5),
+  salary = rep(33, n),
+  size = rep(1, n),
+  rowid = seq_len(n),
+  id = seq_len(n),
+  stringsAsFactors = FALSE)
 
-data_non_opp_teams <- tibble::tibble(player = c("alice", "bob", "carol", "dan"),
-                       team_id = c("alpha", "beta", "gamma", "gamma"),
-                       opp_team_id = c("zeta", "garble", "omega", "omega"),
-                       position = c("P", "3B", "2B", "3B"),
-                       fpts_proj = c(30, 20, 10, 5),
-                       salary = rep(33, 4),
-                       size = rep(1, 4),
-                       rowid = seq_along(player),
-                       id = seq_along(player))
+data_non_opp_teams <- data.frame(
+  player = c("alice", "bob", "carol", "dan"),
+  team_id = c("alpha", "beta", "gamma", "gamma"),
+  opp_team_id = c("zeta", "garble", "omega", "omega"),
+  position = c("P", "3B", "2B", "3B"),
+  fpts_proj = c(30, 20, 10, 5),
+  salary = rep(33, n),
+  size = rep(1, n),
+  rowid = seq_len(n),
+  id = seq_len(n),
+  stringsAsFactors = FALSE)
 
 test_that("pitcher vs hitter constraint works when we have opposing pitcher/hitters", {
   model <- model_generic(data_opp_teams, total_salary = 100, roster_size = 3, max_from_team = 2) %>%

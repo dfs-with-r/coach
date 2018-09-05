@@ -1,16 +1,18 @@
 context("stacking")
 
 # test data
-data <- tibble::tibble(
+n <- 7L
+data <- data.frame(
   player = c("alice", "bob", "carol", "dan", "ed", "fiona", "george"),
   team_id = c("alpha", "beta", "gamma", "gamma", "gamma", "zeta", "zeta"),
   opp_team_id = c("beta", "alpha", "omega", "omega", "omega", "nu", "nu"),
   position = c("1B", "1B", "1B", "1B", "1B", "1B", "1B"),
   fpts_proj = c(30, 20, 10, 5, 1, 3, 3),
-  salary = rep(33, 7),
+  salary = rep(33, n),
   size = 1,
-  rowid = seq_along(player),
-  id = seq_along(player))
+  rowid = seq_len(n),
+  id = seq_len(n),
+  stringsAsFactors = FALSE)
 
 model <- model_generic(data, total_salary = 165, roster_size = 5)
 
