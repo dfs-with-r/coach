@@ -1,0 +1,7 @@
+^codecov\.yml$
+^\.travis\.yml$
+^\.github$
+^LICENSE\.md$
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
