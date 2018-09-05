@@ -19,3 +19,4 @@ addons:
   apt:
     packages:
       - libgit2-dev
+      - libglpk-dev
