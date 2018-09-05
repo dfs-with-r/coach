@@ -1,4 +1,4 @@
-Package: coach 
+Package: coach
 Title: Lineup optimization for daily fantasy sports
 Version: 0.0.1
 Authors@R: person("Robert","Zamora", email = "zamora.rr@gmail.com", role = c("aut", "cre"))
@@ -22,5 +22,5 @@ Imports:
   ompr.roi,
   readr,
   tidyr
-URL: https://github.com/zamorarr/coach-
-BugReports: https://github.com/zamorarr/coach-/issues
+URL: https://github.com/zamorarr/coach
+BugReports: https://github.com/zamorarr/coach/issues
