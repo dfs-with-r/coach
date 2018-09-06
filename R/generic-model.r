@@ -10,19 +10,18 @@ model_generic <- function(data, total_salary, roster_size,
                           max_from_team = 4,
                           existing_rosters = list()) {
   # check cols
-  needed_cols <- c("rowid", "id", "player", "team_id", "position",
-                   "salary", "fpts_proj", "size")
+  needed_cols <- c("row_id", "player_id", "player", "team", "position",
+                   "salary", "fpts_proj")
   assert_has_cols(data, needed_cols)
 
   # arrange data
-  data <- data[order(data[["rowid"]]),]
+  data <- data[order(data[["row_id"]]),]
   n <- nrow(data)
 
   # helper functions
   salary <- function(i) data[["salary"]][i]
-  size <- function(i) data[["size"]][i]
 
-  team_int <- as.integer(as.factor(data[["team_id"]]))
+  team_int <- as.integer(as.factor(data[["team"]]))
   total_teams <- length(unique(team_int))
   is_team <- function(j, i) as.integer(team_int[i] == j)
 
@@ -30,7 +29,6 @@ model_generic <- function(data, total_salary, roster_size,
   MILPModel() %>%
     add_variable(x[i], i = 1:n, type = "binary") %>%
     add_salary_contraint(n, salary, total_salary) %>%
-    add_roster_size_constraint(n, size, roster_size) %>%
     add_existing_rosters_constraint(existing_rosters) %>%
     add_max_from_team_constraint(n, max_from_team, total_teams, is_team)
 }
@@ -55,12 +53,6 @@ add_max_from_team_constraint <- function(model, n, max_from_team, total_teams, i
     model <- add_constraint(model, sum_expr(colwise(is_team(j, i))*x[i], i = 1:n) <= max_from_team)
   }
   model
-}
-
-#' @importFrom ompr add_constraint sum_expr colwise
-#' @keywords internal
-add_roster_size_constraint <- function(model, n, size, roster_size) {
-  add_constraint(model, sum_expr(colwise(size(i)) * x[i], i = 1:n) == roster_size)
 }
 
 #' @importFrom ompr add_constraint sum_expr
@@ -110,9 +102,9 @@ add_stack_size_constraint <- function(model, mlb, stack_sizes, stack_teams = NUL
   notP <- function(i) as.integer("P" != mlb$position[i])
 
   # all team names to int
-  teams <- unique(c(mlb[["team_id"]], mlb[["opp_team_id"]]))
+  teams <- unique(c(mlb[["team"]], mlb[["opp_team"]]))
   m <- length(teams)
-  team_int <- as.integer(factor(mlb[["team_id"]], levels = teams))
+  team_int <- as.integer(factor(mlb[["team"]], levels = teams))
   is_team <- function(j, i) as.integer(team_int[i] == j)
 
   # available teams to stack

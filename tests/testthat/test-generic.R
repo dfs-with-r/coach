@@ -4,14 +4,13 @@ context("generic")
 total_salary <- 100
 roster_size <- 2
 data <- data.frame(
-  rowid = 1:3,
-  id = 1:3,
+  row_id = 1:3,
+  player_id = 1:3,
   player = c("alice", "bob", "charlie"),
-  team_id = c("alpha", "alpha", "beta"),
+  team = c("alpha", "alpha", "beta"),
   position = c("A", "A", "B"),
   fpts_proj = c(10, 20, 30),
   salary = c(25, 50, 75),
-  size = c(1L, 1L, 1L),
   stringsAsFactors = FALSE)
 
 test_that("generic model builds correctly", {
@@ -24,7 +23,7 @@ test_that("generic model is optimized correctly", {
   result <- optimize_generic_one(data, model)
   roster <- result[["roster"]]
 
-  actual <- sort(roster[["id"]])
+  actual <- sort(roster[["player_id"]])
   expected <- as.integer(c(1,3))
   expect_equal(actual, expected)
 })

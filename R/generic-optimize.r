@@ -3,8 +3,8 @@
 #' @param model optimization model
 #' @param L total number of lineups
 #' @param solver ROI solver to use
-#' @param bans rowids of players to exclude from all lineups
-#' @param locks rowids or players to include in all lineups
+#' @param bans row_ids of players to exclude from all lineups
+#' @param locks row_ids or players to include in all lineups
 #' @param stack_sizes size of each stack
 #' @param stack_teams subset of teams to use to generate stacks. NULL will use all teams.
 #' @param min_salary minimum salary to use
@@ -39,7 +39,7 @@ optimize_generic <- function(data, model, L = 3L, solver = c("glpk", "symphony",
 
     # get results
     results[[i]] <- result$roster
-    roster_rowids <- result[["roster"]][["rowid"]]
+    roster_rowids <- result[["roster"]][["row_id"]]
 
     # add constraint to not generate same lineup again
     model <- add_existing_roster_constraint(model, roster_rowids)

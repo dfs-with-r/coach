@@ -4,16 +4,16 @@
 #' @param mlb data frame of mlb data
 #' @keywords internal
 add_pitcher_hitter_constraint <- function(model, mlb) {
-  assert_has_cols(mlb, "opp_team_id")
+  assert_has_cols(mlb, "opp_team")
 
   # helper funcs
   n <- nrow(mlb)
   P <- function(i) as.integer("P" == mlb$position[i])
   notP <- function(i) as.integer("P" != mlb$position[i])
 
-  teams <- unique(c(mlb[["team_id"]], mlb[["opp_team_id"]]))
-  team_int <- as.integer(factor(mlb[["team_id"]], levels = teams))
-  opp_team_int <- as.integer(factor(mlb[["opp_team_id"]], levels = teams))
+  teams <- unique(c(mlb[["team"]], mlb[["opp_team"]]))
+  team_int <- as.integer(factor(mlb[["team"]], levels = teams))
+  opp_team_int <- as.integer(factor(mlb[["opp_team"]], levels = teams))
 
   is_team <- function(j, i) as.integer(team_int[i] == j)
   is_opp_team <- function(j, i) as.integer(opp_team_int[i] == j)

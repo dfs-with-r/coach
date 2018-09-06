@@ -17,9 +17,9 @@ optimize_generic(data, model, L = 3L, solver = c("glpk", "symphony",
 
 \item{solver}{ROI solver to use}
 
-\item{bans}{rowids of players to exclude from all lineups}
+\item{bans}{row_ids of players to exclude from all lineups}
 
-\item{locks}{rowids or players to include in all lineups}
+\item{locks}{row_ids or players to include in all lineups}
 
 \item{stack_sizes}{size of each stack}
 

@@ -4,26 +4,25 @@ context("constraints-mlb")
 n <- 4
 data_opp_teams <- data.frame(
   player = c("alice", "bob", "carol", "dan"),
-  team_id = c("alpha", "beta", "gamma", "gamma"),
-  opp_team_id = c("beta", "alpha", "omega", "omega"),
+  team = c("alpha", "beta", "gamma", "gamma"),
+  opp_team = c("beta", "alpha", "omega", "omega"),
   position = c("P", "3B", "2B", "3B"),
   fpts_proj = c(30, 20, 10, 5),
   salary = rep(33, n),
-  size = rep(1, n),
-  rowid = seq_len(n),
-  id = seq_len(n),
+  row_id = seq_len(n),
+  player_id = seq_len(n),
   stringsAsFactors = FALSE)
 
 data_non_opp_teams <- data.frame(
   player = c("alice", "bob", "carol", "dan"),
-  team_id = c("alpha", "beta", "gamma", "gamma"),
-  opp_team_id = c("zeta", "garble", "omega", "omega"),
+  team = c("alpha", "beta", "gamma", "gamma"),
+  opp_team = c("zeta", "garble", "omega", "omega"),
   position = c("P", "3B", "2B", "3B"),
   fpts_proj = c(30, 20, 10, 5),
   salary = rep(33, n),
   size = rep(1, n),
-  rowid = seq_len(n),
-  id = seq_len(n),
+  row_id = seq_len(n),
+  player_id = seq_len(n),
   stringsAsFactors = FALSE)
 
 test_that("pitcher vs hitter constraint works when we have opposing pitcher/hitters", {
@@ -33,7 +32,7 @@ test_that("pitcher vs hitter constraint works when we have opposing pitcher/hitt
   result <- optimize_generic_one(data_opp_teams, model)
   roster <- result$roster
 
-  expect_equal(sort(roster$team_id), c("alpha", "gamma", "gamma"))
+  expect_equal(sort(roster$team), c("alpha", "gamma", "gamma"))
 })
 
 test_that("pitcher vs hitter constraint works when don't have opposing pitcher/hitters", {
@@ -43,7 +42,7 @@ test_that("pitcher vs hitter constraint works when don't have opposing pitcher/h
   result <- optimize_generic_one(data_non_opp_teams, model)
   roster <- result$roster
 
-  expect_equal(sort(roster$team_id), c("alpha", "beta", "gamma"))
+  expect_equal(sort(roster$team), c("alpha", "beta", "gamma"))
 })
 
 test_that("stacking works", {
@@ -52,5 +51,5 @@ test_that("stacking works", {
 
   result <- optimize_generic_one(data_opp_teams, model)
   roster <- result$roster
-  expect_equal(sort(roster$team_id), c("alpha", "gamma", "gamma"))
+  expect_equal(sort(roster$team), c("alpha", "gamma", "gamma"))
 })

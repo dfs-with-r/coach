@@ -22,9 +22,9 @@ model_dk_mlb <- function(data, existing_rosters = list()) {
 #' @keywords internal
 add_unique_id_constraint <- function(model, data) {
   n <- nrow(data)
-  ids <- unique(data[["id"]])
+  ids <- unique(data[["player_id"]])
 
-  has_id <- function(i, id) as.integer(data[["id"]] == id)
+  has_id <- function(i, id) as.integer(data[["player_id"]] == id)
 
   for (id in ids) {
     model <- add_constraint(model, sum_expr(colwise(has_id(i, id)) * x[i], i = 1:n) <= 1)
