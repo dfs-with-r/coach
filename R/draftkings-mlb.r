@@ -10,27 +10,7 @@ model_dk_mlb <- function(data, existing_rosters = list()) {
   # build model
   model_generic(data, total_salary, roster_size, max_from_team, existing_rosters) %>%
     add_dk_mlb_roster_positions_constraint(data) %>%
-    add_pitcher_hitter_constraint(data) %>%
-    add_unique_id_constraint(data)
-}
-
-#' Unique ID constraint
-#'
-#' On sites with multi-position eligibility, players will show up once for every
-#' position they are eligible. We want to ensure a player is not selected more than
-#' once on the same lineup
-#' @keywords internal
-add_unique_id_constraint <- function(model, data) {
-  n <- nrow(data)
-  ids <- unique(data[["player_id"]])
-
-  has_id <- function(i, id) as.integer(data[["player_id"]] == id)
-
-  for (id in ids) {
-    model <- add_constraint(model, sum_expr(colwise(has_id(i, id)) * x[i], i = 1:n) <= 1)
-  }
-
-  model
+    add_pitcher_hitter_constraint(data)
 }
 
 #' @importFrom ompr add_constraint sum_expr

@@ -31,7 +31,8 @@ model_generic <- function(data, total_salary, roster_size,
     add_salary_contraint(n, salary, total_salary) %>%
     add_existing_rosters_constraint(existing_rosters) %>%
     add_roster_size_constraint(n, roster_size) %>%
-    add_max_from_team_constraint(n, max_from_team, total_teams, is_team)
+    add_max_from_team_constraint(n, max_from_team, total_teams, is_team) %>%
+    add_unique_id_constraint(data)
 }
 
 #' @importFrom ompr set_objective sum_expr colwise
@@ -146,3 +147,25 @@ add_stack_size_constraint <- function(model, mlb, stack_sizes, stack_teams = NUL
   model
 }
 
+#' Unique ID constraint
+#'
+#' On sites with multi-position eligibility, players will show up once for every
+#' position they are eligible. We want to ensure a player is not selected more than
+#' once on the same lineup
+#' @keywords internal
+add_unique_id_constraint <- function(model, data) {
+  n <- nrow(data)
+  ids <- unique(data[["player_id"]])
+
+  has_id <- function(i, id) as.integer(data[["player_id"]] == id)
+
+  # only need to apply this constraint to players that appear more than once
+  multi_players <- names(which(table(data[["player_id"]]) > 1))
+  are_multi <- which(data[["player_id"]] %in% multi_players)
+
+  for (id in are_multi) {
+    model <- add_constraint(model, sum_expr(colwise(has_id(i, id)) * x[i], i = 1:n) <= 1)
+  }
+
+  model
+}
