@@ -94,6 +94,10 @@ add_dk_opp_team <- function(df) {
   merge(df, teams, by.x = "teamabbrev", by.y = "team")
 }
 
+#' Read Draftkings Player Pool
+#'
+#' Expects a draftable csv type from \url{https://www.draftkings.com/lineup/upload}
+#' @param path path to csv file
 #' @export
 read_dk_nfl <- function(path) {
   df <- read_dk(path, 11:19)
@@ -103,6 +107,7 @@ read_dk_nfl <- function(path) {
 }
 
 #' @export
+#' @rdname read_dk_nfl
 read_dk_mlb <- function(path) {
   df <- read_dk(path, 12:20)
   add_row_id(df)
