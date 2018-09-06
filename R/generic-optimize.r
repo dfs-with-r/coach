@@ -9,8 +9,10 @@
 #' @param stack_teams subset of teams to use to generate stacks. NULL will use all teams.
 #' @param min_salary minimum salary to use
 #' @export
-optimize_generic <- function(data, model, L = 3L, solver = c("glpk", "symphony", "cbc"),
-                             bans = NULL, locks = NULL,
+optimize_generic <- function(data, model, L = 3L,
+                             solver = c("glpk", "symphony", "cbc"),
+                             bans = NULL,
+                             locks = NULL,
                              stack_sizes = NULL,
                              stack_teams = NULL,
                              min_salary = NULL) {
