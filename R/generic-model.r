@@ -30,6 +30,7 @@ model_generic <- function(data, total_salary, roster_size,
     add_variable(x[i], i = 1:n, type = "binary") %>%
     add_salary_contraint(n, salary, total_salary) %>%
     add_existing_rosters_constraint(existing_rosters) %>%
+    add_roster_size_constraint(n, roster_size) %>%
     add_max_from_team_constraint(n, max_from_team, total_teams, is_team)
 }
 
@@ -43,6 +44,12 @@ set_generic_objective <- function(model, n, fpts) {
 #' @keywords internal
 add_salary_contraint <- function(model, n, salary, total_salary) {
   add_constraint(model, sum_expr(colwise(salary(i)) * x[i], i = 1:n) <= total_salary)
+}
+
+#' @importFrom ompr add_constraint sum_expr colwise
+#' @keywords internal
+add_roster_size_constraint <- function(model, n, roster_size) {
+  add_constraint(model, sum_expr(x[i], i = 1:n) == roster_size)
 }
 
 #' @importFrom ompr add_constraint sum_expr colwise
