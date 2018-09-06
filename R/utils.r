@@ -25,7 +25,8 @@ unnest_col <- function(df, colname) {
   df_unnest <- lapply(seq_len(n), function(i) {
     pos <- df[[colname]][[i]]
     d <- data.frame(i, pos, stringsAsFactors = FALSE)
-    setNames(d, c(".i", colname))
+    colnames(d) <- c(".i", colname)
+    d
   })
 
   df_unnest <- do.call(rbind, df_unnest)
