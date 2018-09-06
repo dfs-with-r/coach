@@ -9,8 +9,7 @@ model_dk_nba <- function(data, existing_rosters = list()) {
 
   # build model
   model <- model_generic(data, total_salary, roster_size, max_from_team, existing_rosters) %>%
-    add_dk_nba_roster_positions_constraint(data) %>%
-    add_unique_id_constraint(data)
+    add_dk_nba_roster_positions_constraint(data)
 
   model
 }
