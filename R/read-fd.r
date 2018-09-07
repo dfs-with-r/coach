@@ -6,7 +6,7 @@
 #' @param path path to csv file
 #' @export
 read_fd <- function(path) {
-  df <- read.csv(path, stringsAsFactors = FALSE)
+  df <- utils::read.csv(path, stringsAsFactors = FALSE)
 
   # keep only first columns
   df <- df[1:12]

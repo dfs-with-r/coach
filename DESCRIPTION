@@ -11,18 +11,19 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: 
-  covr,
-  knitr,
-  rmarkdown,
-  spelling,
-  testthat
+    covr,
+    knitr,
+    rmarkdown,
+    spelling,
+    testthat
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
 Imports:
-  magrittr,
-  ompr,
-  ompr.roi,
-  tibble
+    magrittr,
+    ompr,
+    ompr.roi,
+    tibble,
+    utils
 URL: https://github.com/zamorarr/coach, https://zamorarr.github.io/coach/
 BugReports: https://github.com/zamorarr/coach/issues
 Language: en-US
