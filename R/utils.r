@@ -42,6 +42,7 @@ unnest_col <- function(df, colname) {
 
 #' Parse locations from a string like SAS@GSW
 #' @param x vector of strings
+#' @keywords internal
 parse_locations <- function(x) {
   m <- regexec("([A-Z]{2,3})@([A-Z]{2,3})", x)
   regs <- regmatches(x, m)

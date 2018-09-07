@@ -6,6 +6,7 @@ assert_is_length_one_or_n <- function(x, n) {
 #'
 #' @param df a data frame
 #' @param cols column names
+#' @keywords internal
 assert_has_cols <- function(df, cols) {
   is_in_df <- cols %in% colnames(df)
   has_all_cols <- all(is_in_df)
@@ -20,6 +21,7 @@ assert_has_cols <- function(df, cols) {
 #' @param df data frame
 #' @param cols column names
 #' @param coltypes column types (ex. "integer", "double", "character")
+#' @keywords internal
 assert_coltypes <- function(df, cols, coltypes) {
   # should I just use an S4 class instead?
   are_correct <- mapply(function(d, dtype) identical(typeof(d), dtype),

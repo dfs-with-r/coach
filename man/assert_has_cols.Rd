@@ -14,3 +14,4 @@ assert_has_cols(df, cols)
 \description{
 Assert that the dataframe has certain columns
 }
+\keyword{internal}

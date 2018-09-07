@@ -18,3 +18,4 @@ add_stack_size_constraint(model, mlb, stack_sizes, stack_teams = NULL)
 \description{
 Stack best available teams with variable sizes
 }
+\keyword{internal}

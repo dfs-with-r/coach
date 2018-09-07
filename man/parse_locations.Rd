@@ -12,3 +12,4 @@ parse_locations(x)
 \description{
 Parse locations from a string like SAS@GSW
 }
+\keyword{internal}

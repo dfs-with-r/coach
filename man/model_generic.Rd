@@ -54,4 +54,3 @@ model_generic(data, total_salary, roster_size, max_from_team = 4,
 \description{
 Generic fantasy model
 }
-\keyword{internal}

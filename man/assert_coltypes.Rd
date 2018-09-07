@@ -16,3 +16,4 @@ assert_coltypes(df, cols, coltypes)
 \description{
 Make sure columns in data frame are the right type
 }
+\keyword{internal}

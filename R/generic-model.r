@@ -4,7 +4,6 @@
 #' @param roster_size number of players on each lineup
 #' @param max_from_team maximum number of players allowed from each team
 #' @param existing_rosters list of integer vectors specifying rosters to exclude
-#' @keywords internal
 #' @importFrom ompr MIPModel MILPModel add_variable
 model_generic <- function(data, total_salary, roster_size,
                           max_from_team = 4,
@@ -109,6 +108,7 @@ add_player_ban_constraint <- function(model, bans) {
 #' @param mlb data
 #' @param stack_sizes size of each stack
 #' @param stack_teams subset of teams to select for stacking. leave NULL to allow any team
+#' @keywords internal
 add_stack_size_constraint <- function(model, mlb, stack_sizes, stack_teams = NULL) {
   n <- nrow(mlb)
   notP <- function(i) as.integer("P" != mlb$position[i])
