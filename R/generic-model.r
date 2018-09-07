@@ -173,3 +173,10 @@ add_unique_id_constraint <- function(model, data) {
 
   model
 }
+
+add_min_salary_constraint <- function(model, data, min_salary) {
+  n <- nrow(data)
+  salary <- function(i) data[["salary"]][i]
+
+  add_constraint(model, sum_expr(colwise(salary(i)) * x[i], i = 1:n) >= min_salary)
+}

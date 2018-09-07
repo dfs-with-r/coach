@@ -59,10 +59,3 @@ add_fduel_mlb_roster_positions_constraint <- function(model, mlb) {
     add_constraint(sum_expr(colwise(OF(i)) * x[i], i = 1:n) >= 3) %>%
     add_constraint(sum_expr(colwise(OF(i)) * x[i], i = 1:n) <= 4)
 }
-
-add_min_salary_constraint <- function(model, data, min_salary) {
-  n <- nrow(data)
-  salary <- function(i) data[["salary"]][i]
-
-  add_constraint(model, sum_expr(colwise(salary(i)) * x[i], i = 1:n) >= min_salary)
-}
