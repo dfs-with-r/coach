@@ -7,10 +7,10 @@
 \alias{model_dk_mlb}
 \alias{model_dk_nba}
 \alias{model_dk_nfl}
-\alias{model_fduel_mlb}
-\alias{model_fduel_nba}
-\alias{model_fduel_nhl}
-\alias{model_fduel_wnba}
+\alias{model_fd_mlb}
+\alias{model_fd_nba}
+\alias{model_fd_nhl}
+\alias{model_fd_wnba}
 \alias{model_fdr_mlb}
 \alias{model_fdr_nba}
 \alias{model_fdr_nfl}
@@ -23,13 +23,13 @@ model_dk_nba(data, existing_rosters = list())
 
 model_dk_nfl(data, existing_rosters = list())
 
-model_fduel_mlb(data, existing_rosters = list())
+model_fd_mlb(data, existing_rosters = list())
 
-model_fduel_nba(data, existing_rosters = list())
+model_fd_nba(data, existing_rosters = list())
 
-model_fduel_nhl(data, existing_rosters = list())
+model_fd_nhl(data, existing_rosters = list())
 
-model_fduel_wnba(data, existing_rosters = list())
+model_fd_wnba(data, existing_rosters = list())
 
 model_fdr_mlb(data, existing_rosters = list())
 

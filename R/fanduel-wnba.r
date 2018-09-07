@@ -1,6 +1,6 @@
 #' @rdname model_generic
 #' @export
-model_fduel_wnba <- function(data, existing_rosters = list()) {
+model_fd_wnba <- function(data, existing_rosters = list()) {
 
   # params
   total_salary <- 40E3

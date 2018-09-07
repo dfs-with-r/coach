@@ -1,6 +1,6 @@
 #' @rdname model_generic
 #' @export
-model_fduel_mlb <- function(data, existing_rosters = list()) {
+model_fd_mlb <- function(data, existing_rosters = list()) {
 
   # params
   total_salary <- 35E3
