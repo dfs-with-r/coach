@@ -42,16 +42,29 @@ print(data)
 ```
 
 ```{r echo=FALSE}
+# for prettier printing
+slim <- function(df) {
+  cols <- c("player_id", "player", "team", "position", "salary", "fpts_avg", "fpts_proj")
+  use_cols <- intersect(cols, colnames(df))
+  df[order(-df[["salary"]]), use_cols]
+}
+
 data <- read_dk_nfl("tests/testthat/data/dk-nfl.csv")
-print(data)
+print(slim(data))
 ```
 
 Add your custom projections into a column called `fpts_proj`. This is very important! If your projections aren't good then your optimized lineups won't be good either. For this example we'll just add some random noise to the player's season average fantasy points.
 
-```{r}
+```{r eval=FALSE}
 n <- nrow(data)
 data$fpts_proj <- rnorm(n, data$fpts_avg)
 print(data)
+```
+
+```{r echo=FALSE}
+n <- nrow(data)
+data$fpts_proj <- rnorm(n, data$fpts_avg)
+print(slim(data))
 ```
 
 Build a fantasy model. This model contains all the constraints imposed by the site and sport.
@@ -67,8 +80,6 @@ optimize_generic(data, model, L = 3)
 ```{r echo=FALSE}
 # cleaner printing
 results <- optimize_generic(data, model, L = 3)
-data_slim <- lapply(results, function(x) x[c("player_id", "player", "team", "position", "salary", "fpts_proj")])
-print(data_slim)
-
+print(lapply(results, slim))
 ```
 
