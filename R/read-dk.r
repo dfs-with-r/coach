@@ -41,6 +41,12 @@ read_dk_raw <- function(path, colnums) {
   add_dk_opp_team(df)
 }
 
+#' Read Draftkings
+#'
+#' Reads in raw file and then cleans it up
+#' @param path path to csv file
+#' @param colnums columns that contain the roster data
+#' @keywords internal
 read_dk <- function(path, colnums) {
   df <- read_dk_raw(path, colnums)
 
@@ -84,13 +90,11 @@ add_row_id <- function(df) {
 #' @keywords internal
 add_dk_opp_team <- function(df) {
   game_info <- unique(df[["game_info"]])
-
-  m <- regexec("([A-Z]{3})@([A-Z]{3})", game_info)
-  regs <- regmatches(game_info, m)
-  regs <- matrix(unlist(regs), ncol = 3, byrow = TRUE)
+  regs <- parse_locations(game_info)
 
   away_team <- regs[,2]
   home_team <- regs[,3]
+
   teams <- data.frame(
     team = c(away_team, home_team),
     opp_team = c(home_team, away_team),
@@ -118,5 +122,19 @@ read_dk_mlb <- function(path) {
   df <- read_dk(path, 12:20)
   add_row_id(df)
 }
+
+# @export
+# @rdname read_dk_nfl
+#read_dk_nba <- function(path) {
+#  df <- read_dk(path, 12:20)
+#  add_row_id(df)
+#}
+
+# @export
+# @rdname read_dk_nfl
+#read_dk_nhl <- function(path) {
+#  df <- read_dk(path, 12:20)
+#  add_row_id(df)
+#}
 
 
