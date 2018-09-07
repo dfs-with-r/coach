@@ -31,6 +31,9 @@ read_dk_raw <- function(path, colnums) {
   names(x) <- header
   x[] <- lapply(seq_len(m), function(j) vapply(players, function(p) p[j], character(1L)))
 
+  # trim whitespace
+  x[] <- lapply(x, trimws)
+
   # build data frame
   df <- as.data.frame(x, stringsAsFactors = FALSE)
 
