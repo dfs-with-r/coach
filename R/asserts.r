@@ -15,6 +15,29 @@ assert_has_cols <- function(df, cols) {
   }
 }
 
+#' Make sure columns in data frame are the right type
+#'
+#' @param df data frame
+#' @param cols column names
+#' @param coltypes column types (ex. "integer", "double", "character")
+assert_coltypes <- function(df, cols, coltypes) {
+  # should I just use an S4 class instead?
+  are_correct <- mapply(function(d, dtype) identical(typeof(d), dtype),
+                        df[cols], coltypes, SIMPLIFY = FALSE)
+  are_correct <- unlist(are_correct)
+
+  if (!all(are_correct)) {
+    incorrect_cols <- cols[!are_correct]
+    incorrect_types <- vapply(incorrect_cols, function(col) typeof(df[[col]]), character(1L))
+    correct_types <- coltypes[!are_correct]
+
+    incorrect_msg <- paste("\t-", incorrect_cols, "is",  incorrect_types, "but should be", correct_types, "\n")
+    base_msg <- "The following columns are the wrong type\n"
+
+    stop(paste(base_msg, incorrect_msg, collapse = ""), call. = FALSE)
+  }
+}
+
 assert_has_positions <- function(df, allowed_positions) {
   # split multi-positions
   positions <- unlist(strsplit(df[["position"]], "/"))

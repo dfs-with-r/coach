@@ -12,7 +12,11 @@ model_generic <- function(data, total_salary, roster_size,
   # check cols
   needed_cols <- c("row_id", "player_id", "player", "team", "position",
                    "salary", "fpts_proj")
+  needed_types <- c("integer", "character", "character", "character",
+                    "character", "integer", "double")
+
   assert_has_cols(data, needed_cols)
+  assert_coltypes(data, needed_cols, needed_types)
 
   # arrange data
   data <- data[order(data[["row_id"]]),]
