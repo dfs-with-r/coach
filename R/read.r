@@ -55,7 +55,7 @@ read_dk <- function(path, colnums) {
   df_model <- df[c("id", "name", "teamabbrev", "opp_team", "location",
                    "position", "salary", "avgpointspergame")]
   colnames(df_model) <- c("player_id", "player", "team", "opp_team", "location",
-                          "position", "salary", "fpts_proj")
+                          "position", "salary", "fpts_avg")
 
   # expand multiple position players
   # equivalent of tidyr::unnest(df_model, "position")
@@ -63,7 +63,7 @@ read_dk <- function(path, colnums) {
 
   # select cols
   df_tidy <- df_tidy[c("player_id", "player", "team", "opp_team", "location",
-            "position", "salary", "fpts_proj")]
+            "position", "salary", "fpts_avg")]
 
   # tibble
   tibble::as_tibble(df_tidy)
