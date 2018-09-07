@@ -62,8 +62,11 @@ read_dk <- function(path, colnums) {
   df_tidy <- unnest_col(df_model, "position")
 
   # select cols
-  df_tidy[c("player_id", "player", "team", "opp_team", "location",
+  df_tidy <- df_tidy[c("player_id", "player", "team", "opp_team", "location",
             "position", "salary", "fpts_proj")]
+
+  # tibble
+  tibble::as_tibble(df_tidy)
 }
 
 #' Add a row id column to the data frame

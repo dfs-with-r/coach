@@ -70,7 +70,7 @@ optimize_generic_one <- function(data, model, solver = c("glpk", "symphony", "cb
   matches <- matches$i
 
   # optimal lineup
-  lineup <- data[matches, ]
+  lineup <- tibble::as_tibble(data[matches, ])
 
   structure(
     list(

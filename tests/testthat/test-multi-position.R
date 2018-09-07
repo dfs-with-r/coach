@@ -16,7 +16,8 @@ data <- data.frame(
 test_that("draftkings multi-position eligibility works", {
   # data needs to have one position per player
   # separate if not the case
-  data <- tidyr::separate_rows(data, position, sep = "/")
+  data[["position"]] <- strsplit(data[["position"]], "/")
+  data <- unnest_col(data, "position")
   data[["row_id"]] <- seq_len(nrow(data))
 
   model <- model_generic(data, total_salary = 100, roster_size = 3) %>%

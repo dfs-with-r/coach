@@ -21,7 +21,6 @@ Imports:
   magrittr,
   ompr,
   ompr.roi,
-  readr,
-  tidyr
+  tibble
 URL: https://github.com/zamorarr/coach
 BugReports: https://github.com/zamorarr/coach/issues
