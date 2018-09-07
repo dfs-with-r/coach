@@ -8,9 +8,9 @@ data <- data.frame(
   opp_team = c("beta", "alpha", "omega", "omega", "omega", "nu", "nu"),
   position = c("1B", "1B", "1B", "1B", "1B", "1B", "1B"),
   fpts_proj = c(30, 20, 10, 5, 1, 3, 3),
-  salary = rep(33, n),
+  salary = rep(33L, n),
   row_id = seq_len(n),
-  player_id = seq_len(n),
+  player_id = as.character(seq_len(n)),
   stringsAsFactors = FALSE)
 
 model <- model_generic(data, total_salary = 165, roster_size = 5)

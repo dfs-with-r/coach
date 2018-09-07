@@ -8,9 +8,9 @@ data <- data.frame(
   opp_team = c("beta", "alpha", "omega", "omega"),
   position = c("P", "3B/OF", "2B", "3B"),
   fpts_proj = c(30, 20, 10, 5),
-  salary = rep(33, n),
+  salary = rep(33L, n),
   row_id = seq_len(n),
-  player_id = seq_len(n),
+  player_id = as.character(seq_len(n)),
   stringsAsFactors = FALSE)
 
 test_that("draftkings multi-position eligibility works", {

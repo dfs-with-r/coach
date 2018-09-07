@@ -8,9 +8,9 @@ data_opp_teams <- data.frame(
   opp_team = c("beta", "alpha", "omega", "omega"),
   position = c("P", "3B", "2B", "3B"),
   fpts_proj = c(30, 20, 10, 5),
-  salary = rep(33, n),
+  salary = rep(33L, n),
   row_id = seq_len(n),
-  player_id = seq_len(n),
+  player_id = as.character(seq_len(n)),
   stringsAsFactors = FALSE)
 
 data_non_opp_teams <- data.frame(
@@ -19,10 +19,10 @@ data_non_opp_teams <- data.frame(
   opp_team = c("zeta", "garble", "omega", "omega"),
   position = c("P", "3B", "2B", "3B"),
   fpts_proj = c(30, 20, 10, 5),
-  salary = rep(33, n),
+  salary = rep(33L, n),
   size = rep(1, n),
   row_id = seq_len(n),
-  player_id = seq_len(n),
+  player_id = as.character(seq_len(n)),
   stringsAsFactors = FALSE)
 
 test_that("pitcher vs hitter constraint works when we have opposing pitcher/hitters", {
