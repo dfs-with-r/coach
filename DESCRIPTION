@@ -5,7 +5,7 @@ Authors@R: person("Robert","Zamora", email = "zamora.rr@gmail.com", role = c("au
 Description: >
   Optimize fantasy sports lineups for a number of sports, sites, and constraints.
 Depends: 
-  R (>= 3.1),
+  R (>= 3.4),
   ROI.plugin.glpk
 License: GPL-3
 Encoding: UTF-8
