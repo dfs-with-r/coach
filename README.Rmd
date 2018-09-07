@@ -1,0 +1,74 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# coach
+[![Travis build status](https://travis-ci.org/zamorarr/coach.svg?branch=master)](https://travis-ci.org/zamorarr/coach)
+[![Coverage status](https://codecov.io/gh/zamorarr/coach/branch/master/graph/badge.svg)](https://codecov.io/github/zamorarr/coach?branch=master)
+
+The goal of coach is to provide functions to optimize lineups for a variety of sites (draftkings, fanduel, fantasydraft) and sports (nba, mlb, nfl, nhl). Not every site/sport combination has been created yet. If you want something added, file an issue.
+
+## Installation
+
+You can install the released version of coach from [github](https://github.com/zamorarr/coach) with:
+
+``` r
+devtools::install_github("zamorarr/coach")
+```
+
+## Example
+Load the library.
+
+```{r message=FALSE}
+library(coach)
+```
+
+Load lineup data exported from a fantasy site and read it in. Check the documention of the `read_*_*` functions for instructions on how to export the data. For example, for Draftkings you have to goto [https://www.draftkings.com/lineup/upload](https://www.draftkings.com/lineup/upload) and select the sport and slate data to export.
+
+```{r, eval=FALSE}
+data <- read_dk_nfl("mydata.csv")
+print(data)
+```
+
+```{r echo=FALSE}
+data <- read_dk_nfl("tests/testthat/data/dk-nfl.csv")
+print(data)
+```
+
+Add your custom projections into a column called `fpts_proj`. This is very important! If your projections aren't good then your optimized lineups won't be good either. For this example we'll just add some random noise to the player's season average fantasy points.
+
+```{r}
+n <- nrow(data)
+data$fpts_proj <- rnorm(n, data$fpts_avg)
+print(data)
+```
+
+Build a fantasy model. This model contains all the constraints imposed by the site and sport.
+```{r}
+model <- model_dk_nfl(data)
+```
+
+Generate three optimized lineups using your projections and the fantasy model
+```{r eval=FALSE}
+optimize_generic(data, model, L = 3)
+```
+
+```{r echo=FALSE}
+# cleaner printing
+results <- optimize_generic(data, model, L = 3)
+data_slim <- lapply(results, function(x) x[c("player_id", "player", "team", "position", "salary", "fpts_proj")])
+print(data_slim)
+
+```
+
