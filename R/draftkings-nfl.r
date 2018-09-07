@@ -30,21 +30,21 @@ add_dk_nfl_roster_positions_constraint <- function(model, nfl) {
 
   model %>%
     # quater back
-    add_constraint(sum_expr(colwise(QB(i)) * x[i], i = 1:n) == 1)# %>%
+    add_constraint(sum_expr(colwise(QB(i)) * x[i], i = 1:n) == 1) %>%
 
     # running back
-    #add_constraint(sum_expr(RB(i) * x[i], i = 1:n) >= 2) %>%
-    #add_constraint(sum_expr(RB(i) * x[i], i = 1:n) <= 3) %>%
+    add_constraint(sum_expr(colwise(RB(i)) * x[i], i = 1:n) >= 2) %>%
+    add_constraint(sum_expr(colwise(RB(i)) * x[i], i = 1:n) <= 3) %>%
 
     # wide receiver
-    #add_constraint(sum_expr(WR(i) * x[i], i = 1:n) >= 3) %>%
-    #add_constraint(sum_expr(WR(i) * x[i], i = 1:n) <= 4) %>%
+    add_constraint(sum_expr(colwise(WR(i)) * x[i], i = 1:n) >= 3) %>%
+    add_constraint(sum_expr(colwise(WR(i)) * x[i], i = 1:n) <= 4) %>%
 
     # tight end
-    #add_constraint(sum_expr(TE(i) * x[i], i = 1:n) >= 1) %>%
-    #add_constraint(sum_expr(TE(i) * x[i], i = 1:n) <= 2) %>%
+    add_constraint(sum_expr(colwise(TE(i)) * x[i], i = 1:n) >= 1) %>%
+    add_constraint(sum_expr(colwise(TE(i)) * x[i], i = 1:n) <= 2) %>%
 
     # defense
-    #add_constraint(sum_expr(DST(i) * x[i], i = 1:n) == 1)
+    add_constraint(sum_expr(colwise(DST(i)) * x[i], i = 1:n) == 1)
 }
 
