@@ -2,7 +2,7 @@
 % Please edit documentation in R/read.r
 \name{read_dk_raw}
 \alias{read_dk_raw}
-\title{Read Draftkings Draftable Players}
+\title{Read Draftkings Players}
 \usage{
 read_dk_raw(path, colnums)
 }
@@ -12,6 +12,6 @@ read_dk_raw(path, colnums)
 \item{colnums}{columns that contain the roster data}
 }
 \description{
-Expects a draftable csv type from \url{https://www.draftkings.com/lineup/upload}
+Expects a csv from \url{https://www.draftkings.com/lineup/upload}
 }
 \keyword{internal}

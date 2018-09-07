@@ -104,7 +104,7 @@ add_player_ban_constraint <- function(model, bans) {
   }
 }
 
-#' Stack best avaialable teams with variable sizes
+#' Stack best available teams with variable sizes
 #' @param model model
 #' @param mlb data
 #' @param stack_sizes size of each stack

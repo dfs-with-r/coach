@@ -2,7 +2,7 @@
 % Please edit documentation in R/generic-model.r
 \name{add_stack_size_constraint}
 \alias{add_stack_size_constraint}
-\title{Stack best avaialable teams with variable sizes}
+\title{Stack best available teams with variable sizes}
 \usage{
 add_stack_size_constraint(model, mlb, stack_sizes, stack_teams = NULL)
 }
@@ -16,5 +16,5 @@ add_stack_size_constraint(model, mlb, stack_sizes, stack_teams = NULL)
 \item{stack_teams}{subset of teams to select for stacking. leave NULL to allow any team}
 }
 \description{
-Stack best avaialable teams with variable sizes
+Stack best available teams with variable sizes
 }

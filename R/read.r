@@ -1,6 +1,6 @@
-#' Read Draftkings Draftable Players
+#' Read Draftkings Players
 #'
-#' Expects a draftable csv type from \url{https://www.draftkings.com/lineup/upload}
+#' Expects a csv from \url{https://www.draftkings.com/lineup/upload}
 #'
 #' @param path path to csv file
 #' @param colnums columns that contain the roster data
@@ -102,7 +102,7 @@ add_dk_opp_team <- function(df) {
 
 #' Read Draftkings Player Pool
 #'
-#' Expects a draftable csv type from \url{https://www.draftkings.com/lineup/upload}
+#' Expects a csv type from \url{https://www.draftkings.com/lineup/upload}
 #' @param path path to csv file
 #' @export
 read_dk_nfl <- function(path) {

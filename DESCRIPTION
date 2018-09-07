@@ -14,6 +14,7 @@ Suggests:
   covr,
   knitr,
   rmarkdown,
+  spelling,
   testthat
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
@@ -24,3 +25,4 @@ Imports:
   tibble
 URL: https://github.com/zamorarr/coach
 BugReports: https://github.com/zamorarr/coach/issues
+Language: en-US

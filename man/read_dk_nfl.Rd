@@ -13,5 +13,5 @@ read_dk_mlb(path)
 \item{path}{path to csv file}
 }
 \description{
-Expects a draftable csv type from \url{https://www.draftkings.com/lineup/upload}
+Expects a csv type from \url{https://www.draftkings.com/lineup/upload}
 }
