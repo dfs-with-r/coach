@@ -39,3 +39,12 @@ unnest_col <- function(df, colname) {
 
   df_merge[setdiff(colnames(df_merge), ".i")]
 }
+
+#' Parse locations from a string like SAS@GSW
+#' @param x vector of strings
+parse_locations <- function(x) {
+  m <- regexec("([A-Z]{2,3})@([A-Z]{2,3})", x)
+  regs <- regmatches(x, m)
+  regs <- matrix(unlist(regs), ncol = 3, byrow = TRUE)
+  regs
+}

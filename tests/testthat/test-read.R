@@ -3,7 +3,7 @@ context("test-read")
 test_that("draftkings nfl reader works", {
   df <- read_dk_nfl("data/dk-nfl.csv")
 
-  expect_equal(nrow(df), 685)
+  expect_equal(nrow(df), 1015)
   expect_equal(ncol(df), 9)
 })
 
