@@ -45,6 +45,17 @@ unnest_col <- function(df, colname) {
 parse_locations <- function(x) {
   m <- regexec("([A-Z]{2,3})@([A-Z]{2,3})", x)
   regs <- regmatches(x, m)
+
+  # replace empty vectors with NAs
+  regs[] <- lapply(regs, function(r) {
+    if (length(r) == 0) {
+      rep(NA_character_, 3)
+    } else {
+      r
+    }
+  })
+
+  # convert list to matrix
   regs <- matrix(unlist(regs), ncol = 3, byrow = TRUE)
   regs
 }
