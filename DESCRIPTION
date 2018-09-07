@@ -23,6 +23,6 @@ Imports:
   ompr,
   ompr.roi,
   tibble
-URL: https://github.com/zamorarr/coach
+URL: https://github.com/zamorarr/coach, https://zamorarr.github.io/coach/
 BugReports: https://github.com/zamorarr/coach/issues
 Language: en-US
