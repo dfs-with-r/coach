@@ -8,7 +8,7 @@ model_fd_nhl <- function(data, existing_rosters = list()) {
   max_from_team <- 4
 
   # build model
-  model_generic(data, total_salary, roster_size, max_from_team, existing_rosters) %>%
+  model <- model_generic(data, total_salary, roster_size, max_from_team, existing_rosters) %>%
     add_fduel_nhl_roster_positions_constraint(data)
   # need to add constraint to avoid having skaters and opposing goalie on same team?
 
