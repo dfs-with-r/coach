@@ -2,7 +2,6 @@
 #'
 #' Reads in raw file and then cleans it up
 #' @param path path to csv file
-#' @param colnums columns that contain the roster data
 #' @export
 read_dk <- function(path) {
   df <- utils::read.csv(path, stringsAsFactors = FALSE, check.names = FALSE)

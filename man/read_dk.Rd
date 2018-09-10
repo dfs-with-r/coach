@@ -8,8 +8,6 @@ read_dk(path)
 }
 \arguments{
 \item{path}{path to csv file}
-
-\item{colnums}{columns that contain the roster data}
 }
 \description{
 Reads in raw file and then cleans it up
