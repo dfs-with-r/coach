@@ -18,6 +18,10 @@ file_type <- function(path) {
 
 
 unnest_col <- function(df, colname) {
+  # original column order
+  cnames <- colnames(df)
+
+  # add dummy id
   n <- nrow(df)
   df[[".i"]] <- seq_len(n)
 
@@ -36,8 +40,10 @@ unnest_col <- function(df, colname) {
 
   # join back to data
   df_merge <- merge(df, df_unnest, by = c(".i"))
+  df_merge <- df_merge[setdiff(colnames(df_merge), ".i")]
 
-  df_merge[setdiff(colnames(df_merge), ".i")]
+  # use original column order
+  df_merge[cnames]
 }
 
 #' Parse locations from a string like SAS@GSW
