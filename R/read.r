@@ -6,9 +6,14 @@
 read_dk <- function(path) {
   df <- utils::read.csv(path, stringsAsFactors = FALSE, check.names = FALSE)
 
+  # add fpts_proj if it doesn't exist
+  if (!("fpts_proj" %in% colnames(df))) {
+    df[["fpts_proj"]] <- NA_real_
+  }
+
   # check column headers
   headers <- c("Position", "Name + ID", "Name", "ID","Roster Position",
-               "Salary", "Game Info","TeamAbbrev","AvgPointsPerGame")
+               "Salary", "Game Info","TeamAbbrev","AvgPointsPerGame", "fpts_proj")
   assert_has_cols(df, headers)
   df <- df[headers]
 
@@ -27,12 +32,13 @@ read_dk <- function(path) {
   df[["id"]] <- as.character(df[["id"]])
   df[["salary"]] <- as.integer(df[["salary"]])
   df[["avgpointspergame"]] <- as.double(df[["avgpointspergame"]])
+  df[["fpts_proj"]] <- as.double(df[["fpts_proj"]])
 
   # select columns for model
   df_model <- df[c("id", "name", "teamabbrev", "opp_team", "location",
-                   "roster_position", "salary", "avgpointspergame")]
+                   "roster_position", "salary", "avgpointspergame", "fpts_proj")]
   colnames(df_model) <- c("player_id", "player", "team", "opp_team", "location",
-                          "position", "salary", "fpts_avg")
+                          "position", "salary", "fpts_avg", "fpts_proj")
 
   # split positions for players that can play multiple, ex. 1B/3B -> c("1B", "3B")
   df_model[["position"]] <- strsplit(df_model[["position"]], "/")
@@ -63,9 +69,15 @@ read_fd <- function(path) {
   # keep only first columns
   df <- df[1:12]
 
+  # add fpts_proj if it doesn't exist
+  if (!("fpts_proj" %in% colnames(df))) {
+    df[["fpts_proj"]] <- NA_real_
+  }
+
   # check column headers
   headers <- c("Id","Position","First Name","Nickname","Last Name","FPPG",
-               "Played","Salary","Game","Team","Opponent","Injury Indicator")
+               "Played","Salary","Game","Team","Opponent","Injury Indicator",
+               "fpts_proj")
   assert_has_cols(df, headers)
   df <- df[headers]
 
@@ -75,9 +87,9 @@ read_fd <- function(path) {
 
   # select columns
   df_tidy <- df[c("Id", "Nickname", "Team", "Opponent", "location", "Position",
-                  "Salary", "FPPG", "Injury Indicator")]
+                  "Salary", "FPPG", "Injury Indicator", "fpts_proj")]
   colnames(df_tidy) <- c("player_id", "player", "team", "opp_team", "location",
-                         "position", "salary", "fpts_avg", "injury")
+                         "position", "salary", "fpts_avg", "injury", "fpts_proj")
 
   # fix injury NAs
   df_tidy[["injury"]] <- with(df_tidy, ifelse(nchar(injury) == 0, NA_character_, injury))
