@@ -1,5 +1,5 @@
 #' @rdname model_generic
-#' @export
+#' @keywords internal
 model_fd_wnba <- function(data, existing_rosters = list()) {
 
   # params

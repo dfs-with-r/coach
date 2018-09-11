@@ -1,5 +1,5 @@
 #' @rdname model_generic
-#' @export
+#' @keywords internal
 model_fdr_nfl <- function(data, existing_rosters = list()) {
   # params
   total_salary <- 100E3

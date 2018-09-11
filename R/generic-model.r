@@ -5,6 +5,7 @@
 #' @param max_from_team maximum number of players allowed from each team
 #' @param existing_rosters list of integer vectors specifying rosters to exclude
 #' @importFrom ompr MIPModel MILPModel add_variable
+#' @keywords internal
 model_generic <- function(data, total_salary, roster_size,
                           max_from_team = 4,
                           existing_rosters = list()) {

@@ -1,5 +1,5 @@
 #' @rdname model_generic
-#' @export
+#' @keywords internal
 model_fdr_mlb <- function(data, existing_rosters = list()) {
 
   # params
