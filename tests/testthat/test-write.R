@@ -60,4 +60,17 @@ test_that("fd mlb position normalization works", {
   expect_equal(actual, expected)
 })
 
+test_that("lineup normalization fixes positions and orders rows correctly", {
+  d <- data.frame(
+    player_id = 1:9,
+    position = c("RB", "QB", "RB", "RB", "WR", "WR", "WR", "TE", "DST"),
+    stringsAsFactors = FALSE
+    )
+
+  actual <- normalize_lineup(d, "draftkings", "nfl")
+
+  expect_equal(actual[["player_id"]], c(2,1,3,5,6,7,8,4,9))
+  expect_equal(actual[["position"]], c("QB", "RB", "RB", "WR", "WR", "WR", "TE", "FLEX", "DST"))
+})
+
 
