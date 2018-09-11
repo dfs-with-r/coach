@@ -2,9 +2,24 @@
 % Please edit documentation in R/write.r
 \name{normalize_positions}
 \alias{normalize_positions}
+\alias{normalize_dk_nfl}
+\alias{normalize_dk_nba}
+\alias{normalize_dk_nhl}
+\alias{normalize_fd_nfl}
+\alias{normalize_fd_mlb}
 \title{Normalize positions by allowed counts}
 \usage{
 normalize_positions(pos, pos_max, wildcard)
+
+normalize_dk_nfl(pos)
+
+normalize_dk_nba(pos)
+
+normalize_dk_nhl(pos)
+
+normalize_fd_nfl(pos)
+
+normalize_fd_mlb(pos)
 }
 \arguments{
 \item{pos}{a character vector of existing positions}
