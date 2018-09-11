@@ -22,6 +22,7 @@ Imports:
     magrittr,
     ompr,
     ompr.roi,
+    stats,
     tibble,
     utils
 URL: https://github.com/zamorarr/coach, https://zamorarr.github.io/coach/
