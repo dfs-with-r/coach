@@ -2,7 +2,7 @@
 % Please edit documentation in R/write.r
 \name{convert_lineup}
 \alias{convert_lineup}
-\title{Convert lineup to DFS Submission}
+\title{Convert lineup to submission format}
 \usage{
 convert_lineup(lineup)
 }
@@ -10,6 +10,6 @@ convert_lineup(lineup)
 \item{lineup}{a normalized lineup}
 }
 \description{
-Convert lineup to DFS Submission
+Convert lineup to submission format
 }
 \keyword{internal}

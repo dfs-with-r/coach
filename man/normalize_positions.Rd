@@ -26,12 +26,11 @@ normalize_fd_mlb(pos)
 
 \item{pos_max}{a named numeric vector giving the max allowed players at that position}
 
-\item{wildcard}{a string specifying what to replace postions with}
+\item{wildcard}{a string specifying what to replace positions with}
 }
 \description{
-Will replace positions with wildcard if their count exceeds the number
-defined by pos_max. This is commonly used to set a player to a UTIL or FLEX
-position.
+Will replace positions with wildcard if their count exceeds the max allowed.
+This is commonly used to set a player to a utility or flex position.
 }
 \examples{
 \dontrun{

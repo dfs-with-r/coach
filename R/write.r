@@ -1,12 +1,11 @@
 #' Normalize positions by allowed counts
 #'
-#' Will replace positions with wildcard if their count exceeds the number
-#' defined by pos_max. This is commonly used to set a player to a UTIL or FLEX
-#' position.
+#' Will replace positions with wildcard if their count exceeds the max allowed.
+#' This is commonly used to set a player to a utility or flex position.
 #'
 #' @param pos a character vector of existing positions
 #' @param pos_max a named numeric vector giving the max allowed players at that position
-#' @param wildcard a string specifying what to replace postions with
+#' @param wildcard a string specifying what to replace positions with
 #'
 #' @keywords internal
 #' @examples
@@ -109,7 +108,7 @@ normalize_fd_mlb <- function(pos) {
 
 #' Normalize a lineup based on position
 #'
-#' Applies a UTIL or FLEX tag to appropriate lineup positions
+#' Applies a utility or flex tag to appropriate lineup positions
 #'
 #' @param lineup a data frame lineup
 #' @param site string
@@ -169,7 +168,7 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel"),
   lineup[order(pos2),]
 }
 
-#' Convert lineup to DFS Submission
+#' Convert lineup to submission format
 #'
 #' @param lineup a normalized lineup
 #' @keywords internal
@@ -179,7 +178,7 @@ convert_lineup <- function(lineup) {
   x
 }
 
-#' Write lineups for DFS submission
+#' Write lineups for submission
 #'
 #' @param lineups a normalized lineup
 #' @param path local disk path
@@ -190,7 +189,7 @@ write_lineups <- function(lineups, path = NULL) {
   df <- do.call(rbind, converted_lineups)
 
   if (!is.null(path)) {
-    write.csv(df, file = path, row.names = FALSE)
+    utils::write.csv(df, file = path, row.names = FALSE)
   }
 
   df

@@ -2,7 +2,7 @@
 % Please edit documentation in R/write.r
 \name{write_lineups}
 \alias{write_lineups}
-\title{Write lineups for DFS submission}
+\title{Write lineups for submission}
 \usage{
 write_lineups(lineups, path = NULL)
 }
@@ -12,5 +12,5 @@ write_lineups(lineups, path = NULL)
 \item{path}{local disk path}
 }
 \description{
-Write lineups for DFS submission
+Write lineups for submission
 }

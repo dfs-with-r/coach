@@ -17,5 +17,5 @@ normalize_lineup(lineup, site = c("draftkings", "fanduel"),
 \item{colname}{default column to apply normalization to}
 }
 \description{
-Applies a UTIL or FLEX tag to appropriate lineup positions
+Applies a utility or flex tag to appropriate lineup positions
 }
