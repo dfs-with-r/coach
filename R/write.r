@@ -168,3 +168,30 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel"),
   pos2 <- factor(lineup[[colname]], levels = pos_levels)
   lineup[order(pos2),]
 }
+
+#' Convert lineup to DFS Submission
+#'
+#' @param lineup a normalized lineup
+#' @keywords internal
+convert_lineup <- function(lineup) {
+  x <- as.data.frame(as.list(lineup[["player_id"]]), stringsAsFactors = FALSE)
+  colnames(x) <- lineup[["position"]]
+  x
+}
+
+#' Write lineups for DFS submission
+#'
+#' @param lineups a normalized lineup
+#' @param path local disk path
+#' @export
+write_lineups <- function(lineups, path = NULL) {
+  split_lineups <- split(lineups, lineups[["lineup"]])
+  converted_lineups <- lapply(split_lineups, convert_lineup)
+  df <- do.call(rbind, converted_lineups)
+
+  if (!is.null(path)) {
+    write.csv(df, file = path, row.names = FALSE)
+  }
+
+  df
+}
