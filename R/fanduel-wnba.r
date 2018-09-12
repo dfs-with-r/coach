@@ -1,5 +1,4 @@
 #' @rdname model_generic
-#' @keywords internal
 model_fd_wnba <- function(data, existing_rosters = list()) {
 
   # params

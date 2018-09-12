@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read Draftkings Player Pool — read_dk_nfl • coach</title>
+<title>Normalize a lineup based on position — normalize_lineup • coach</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Read Draftkings Player Pool — read_dk_nfl" />
+<meta property="og:title" content="Normalize a lineup based on position — normalize_lineup" />
 
-<meta property="og:description" content="Expects a csv type from https://www.draftkings.com/lineup/upload" />
+<meta property="og:description" content="Applies a utility or flex tag to appropriate lineup positions" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -80,7 +80,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/zamorarr/coach">
+  <a href="https://github.com/dfs-with-r/coach">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -97,27 +97,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read Draftkings Player Pool</h1>
-    <small class="dont-index">Source: <a href='https://github.com/zamorarr/coach/blob/master/R/read-dk.r'><code>R/read-dk.r</code></a></small>
-    <div class="hidden name"><code>read_dk_nfl.Rd</code></div>
+    <h1>Normalize a lineup based on position</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dfs-with-r/coach/blob/master/R/write.r'><code>R/write.r</code></a></small>
+    <div class="hidden name"><code>normalize_lineup.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Expects a csv type from <a href='https://www.draftkings.com/lineup/upload'>https://www.draftkings.com/lineup/upload</a></p>
+    <p>Applies a utility or flex tag to appropriate lineup positions</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>read_dk_nfl</span>(<span class='no'>path</span>)
-
-<span class='fu'>read_dk_mlb</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>normalize_lineup</span>(<span class='no'>lineup</span>, <span class='kw'>site</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"draftkings"</span>, <span class='st'>"fanduel"</span>),
+  <span class='kw'>sport</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"nfl"</span>, <span class='st'>"mlb"</span>, <span class='st'>"nba"</span>, <span class='st'>"nhl"</span>), <span class='kw'>colname</span> <span class='kw'>=</span> <span class='st'>"position"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>path to csv file</p></td>
+      <th>lineup</th>
+      <td><p>a data frame lineup</p></td>
+    </tr>
+    <tr>
+      <th>site</th>
+      <td><p>string</p></td>
+    </tr>
+    <tr>
+      <th>sport</th>
+      <td><p>string</p></td>
+    </tr>
+    <tr>
+      <th>colname</th>
+      <td><p>default column to apply normalization to</p></td>
     </tr>
     </table>
     

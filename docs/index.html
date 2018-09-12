@@ -48,7 +48,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/zamorarr/coach">
+  <a href="https://github.com/dfs-with-r/coach">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -86,21 +86,21 @@
 <p>Load the library.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(coach)</code></pre></div>
 <p>Load lineup data exported from a fantasy site and read it in. Check the documention of the <code>read_*_*</code> functions for instructions on how to export the data. For example, for Draftkings you have to goto <a href="https://www.draftkings.com/lineup/upload" class="uri">https://www.draftkings.com/lineup/upload</a> and select the sport and slate data to export.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_dk_nfl.html">read_dk_nfl</a></span>(<span class="st">"mydata.csv"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_dk.html">read_dk</a></span>(<span class="st">"mydata.csv"</span>)
 <span class="kw">print</span>(data)</code></pre></div>
-<pre><code>#&gt; # A tibble: 1,015 x 6
-#&gt;    player_id player          team  position salary fpts_avg
-#&gt;    &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;
-#&gt;  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7
-#&gt;  2 11192254  Todd Gurley II  LAR   RB         9300     26.5
-#&gt;  3 11191754  David Johnson   ARI   RB         8800     14  
-#&gt;  4 11191533  Antonio Brown   PIT   WR         8600     24.6
-#&gt;  5 11192632  Alvin Kamara    NO    RB         8500     19.9
-#&gt;  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7
-#&gt;  7 11192079  Davante Adams   GB    WR         7800     16.1
-#&gt;  8 11192140  Michael Thomas  NO    WR         7800     17.6
-#&gt;  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9
-#&gt; 10 11193133  Julio Jones     ATL   WR         7600     17.3
+<pre><code>#&gt; # A tibble: 1,015 x 7
+#&gt;    player_id player          team  position salary fpts_avg fpts_proj
+#&gt;    &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+#&gt;  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7        NA
+#&gt;  2 11192254  Todd Gurley II  LAR   RB         9300     26.5        NA
+#&gt;  3 11191754  David Johnson   ARI   RB         8800     14          NA
+#&gt;  4 11191533  Antonio Brown   PIT   WR         8600     24.6        NA
+#&gt;  5 11192632  Alvin Kamara    NO    RB         8500     19.9        NA
+#&gt;  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7        NA
+#&gt;  7 11192079  Davante Adams   GB    WR         7800     16.1        NA
+#&gt;  8 11192140  Michael Thomas  NO    WR         7800     17.6        NA
+#&gt;  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9        NA
+#&gt; 10 11193133  Julio Jones     ATL   WR         7600     17.3        NA
 #&gt; # ... with 1,005 more rows</code></pre>
 <p>Add your custom projections into a column called <code>fpts_proj</code>. This is very important! If your projections aren’t good then your optimized lineups won’t be good either. For this example we’ll just add some random noise to the player’s season average fantasy points.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(data)
@@ -109,16 +109,16 @@ data<span class="op">$</span>fpts_proj &lt;-<span class="st"> </span><span class
 <pre><code>#&gt; # A tibble: 1,015 x 7
 #&gt;    player_id player          team  position salary fpts_avg fpts_proj
 #&gt;    &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt;  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7      25.4
-#&gt;  2 11192254  Todd Gurley II  LAR   RB         9300     26.5      26.2
-#&gt;  3 11191754  David Johnson   ARI   RB         8800     14        14.9
-#&gt;  4 11191533  Antonio Brown   PIT   WR         8600     24.6      25.7
-#&gt;  5 11192632  Alvin Kamara    NO    RB         8500     19.9      18.4
-#&gt;  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7      23.1
-#&gt;  7 11192079  Davante Adams   GB    WR         7800     16.1      15.0
-#&gt;  8 11192140  Michael Thomas  NO    WR         7800     17.6      18.0
-#&gt;  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9      20.9
-#&gt; 10 11193133  Julio Jones     ATL   WR         7600     17.3      18.5
+#&gt;  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7      25.2
+#&gt;  2 11192254  Todd Gurley II  LAR   RB         9300     26.5      26.4
+#&gt;  3 11191754  David Johnson   ARI   RB         8800     14        13.8
+#&gt;  4 11191533  Antonio Brown   PIT   WR         8600     24.6      24.4
+#&gt;  5 11192632  Alvin Kamara    NO    RB         8500     19.9      19.5
+#&gt;  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7      22.6
+#&gt;  7 11192079  Davante Adams   GB    WR         7800     16.1      15.2
+#&gt;  8 11192140  Michael Thomas  NO    WR         7800     17.6      16.9
+#&gt;  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9      21.7
+#&gt; 10 11193133  Julio Jones     ATL   WR         7600     17.3      14.6
 #&gt; # ... with 1,005 more rows</code></pre>
 <p>Build a fantasy model. This model contains all the constraints imposed by the site and sport.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw"><a href="reference/model_generic.html">model_dk_nfl</a></span>(data)</code></pre></div>
@@ -126,45 +126,45 @@ data<span class="op">$</span>fpts_proj &lt;-<span class="st"> </span><span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/optimize_generic.html">optimize_generic</a></span>(data, model, <span class="dt">L =</span> <span class="dv">3</span>)</code></pre></div>
 <pre><code>#&gt; [[1]]
 #&gt; # A tibble: 9 x 7
-#&gt;   player_id player          team  position salary fpts_avg fpts_proj
-#&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 11191533  Antonio Brown   PIT   WR         8600    24.6       25.7
-#&gt; 2 11191840  DeAndre Hopkins HOU   WR         8300    21.7       23.1
-#&gt; 3 11192543  Kareem Hunt     KC    RB         6900    19.3       20.5
-#&gt; 4 11192767  Deshaun Watson  HOU   QB         6700    26.3       27.0
-#&gt; 5 11191547  Mark Ingram     NO    RB         5700    16.7       18.5
-#&gt; 6 11191861  Jarvis Landry   CLE   WR         5500    16.4       17.7
-#&gt; 7 11191868  Kapri Bibbs     WAS   RB         3000    13.6       15.3
-#&gt; 8 11191355  Chargers        LAC   DST        2800     9.94      10.7
-#&gt; 9 11192493  Hunter Henry    LAC   TE         2500     9.06      11.6
+#&gt;   player_id player            team  position salary fpts_avg fpts_proj
+#&gt;   &lt;chr&gt;     &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+#&gt; 1 11192254  Todd Gurley II    LAR   RB         9300    26.5      26.4 
+#&gt; 2 11191533  Antonio Brown     PIT   WR         8600    24.6      24.4 
+#&gt; 3 11191859  Odell Beckham Jr. NYG   WR         7000    18.5      19.7 
+#&gt; 4 11192767  Deshaun Watson    HOU   QB         6700    26.3      26.4 
+#&gt; 5 11191861  Jarvis Landry     CLE   WR         5500    16.4      16.5 
+#&gt; 6 11191680  Chris Thompson    WAS   RB         4700    15.9      15.8 
+#&gt; 7 11191758  Cameron Brate     TB    TE         3000     8.94     10.4 
+#&gt; 8 11191868  Kapri Bibbs       WAS   RB         3000    13.6      14.5 
+#&gt; 9 11191358  Buccaneers        TB    DST        2000     6.75      9.66
 #&gt; 
 #&gt; [[2]]
 #&gt; # A tibble: 9 x 7
 #&gt;   player_id player            team  position salary fpts_avg fpts_proj
 #&gt;   &lt;chr&gt;     &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 11192254  Todd Gurley II    LAR   RB         9300    26.5       26.2
-#&gt; 2 11191533  Antonio Brown     PIT   WR         8600    24.6       25.7
-#&gt; 3 11191859  Odell Beckham Jr. NYG   WR         7000    18.5       20.1
-#&gt; 4 11192767  Deshaun Watson    HOU   QB         6700    26.3       27.0
-#&gt; 5 11191861  Jarvis Landry     CLE   WR         5500    16.4       17.7
-#&gt; 6 11191735  Carlos Hyde       CLE   RB         4500    14.9       15.7
-#&gt; 7 11191868  Kapri Bibbs       WAS   RB         3000    13.6       15.3
-#&gt; 8 11191355  Chargers          LAC   DST        2800     9.94      10.7
-#&gt; 9 11192493  Hunter Henry      LAC   TE         2500     9.06      11.6
+#&gt; 1 11191533  Antonio Brown     PIT   WR         8600    24.6      24.4 
+#&gt; 2 11191859  Odell Beckham Jr. NYG   WR         7000    18.5      19.7 
+#&gt; 3 11192543  Kareem Hunt       KC    RB         6900    19.3      21.0 
+#&gt; 4 11192767  Deshaun Watson    HOU   QB         6700    26.3      26.4 
+#&gt; 5 11191538  Travis Kelce      KC    TE         6400    16.4      17.8 
+#&gt; 6 11191861  Jarvis Landry     CLE   WR         5500    16.4      16.5 
+#&gt; 7 11191367  Frank Gore        MIA   RB         3700    11.2      13.4 
+#&gt; 8 11191868  Kapri Bibbs       WAS   RB         3000    13.6      14.5 
+#&gt; 9 11191358  Buccaneers        TB    DST        2000     6.75      9.66
 #&gt; 
 #&gt; [[3]]
 #&gt; # A tibble: 9 x 7
 #&gt;   player_id player            team  position salary fpts_avg fpts_proj
 #&gt;   &lt;chr&gt;     &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-#&gt; 1 11191729  Le'Veon Bell      PIT   RB         9400    24.7       25.4
-#&gt; 2 11191533  Antonio Brown     PIT   WR         8600    24.6       25.7
-#&gt; 3 11191859  Odell Beckham Jr. NYG   WR         7000    18.5       20.1
-#&gt; 4 11192767  Deshaun Watson    HOU   QB         6700    26.3       27.0
-#&gt; 5 11191861  Jarvis Landry     CLE   WR         5500    16.4       17.7
-#&gt; 6 11191735  Carlos Hyde       CLE   RB         4500    14.9       15.7
-#&gt; 7 11191868  Kapri Bibbs       WAS   RB         3000    13.6       15.3
-#&gt; 8 11191355  Chargers          LAC   DST        2800     9.94      10.7
-#&gt; 9 11192493  Hunter Henry      LAC   TE         2500     9.06      11.6</code></pre>
+#&gt; 1 11192254  Todd Gurley II    LAR   RB         9300    26.5       26.4
+#&gt; 2 11191533  Antonio Brown     PIT   WR         8600    24.6       24.4
+#&gt; 3 11191859  Odell Beckham Jr. NYG   WR         7000    18.5       19.7
+#&gt; 4 11192767  Deshaun Watson    HOU   QB         6700    26.3       26.4
+#&gt; 5 11191861  Jarvis Landry     CLE   WR         5500    16.4       16.5
+#&gt; 6 11191367  Frank Gore        MIA   RB         3700    11.2       13.4
+#&gt; 7 11193209  Eagles            PHI   DST        3000    10.8       11.7
+#&gt; 8 11191758  Cameron Brate     TB    TE         3000     8.94      10.4
+#&gt; 9 11191868  Kapri Bibbs       WAS   RB         3000    13.6       14.5</code></pre>
 </div>
 </div>
   </div>
@@ -173,9 +173,9 @@ data<span class="op">$</span>fpts_proj &lt;-<span class="st"> </span><span class
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/zamorarr/coach">https://​github.com/​zamorarr/​coach</a>
+<li>Browse source code at <br><a href="https://github.com/dfs-with-r/coach">https://​github.com/​dfs-with-r/​coach</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/zamorarr/coach/issues">https://​github.com/​zamorarr/​coach/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/dfs-with-r/coach/issues">https://​github.com/​dfs-with-r/​coach/​issues</a>
 </li>
 </ul>
 </div>

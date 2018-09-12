@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generic fantasy model — model_dk_mlb • coach</title>
+<title>Convert lineup to submission format — convert_lineup • coach</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Generic fantasy model — model_dk_mlb" />
+<meta property="og:title" content="Convert lineup to submission format — convert_lineup" />
 
-<meta property="og:description" content="Generic fantasy model" />
+<meta property="og:description" content="Convert lineup to submission format" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,64 +97,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generic fantasy model</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dfs-with-r/coach/blob/master/R/draftkings-mlb.r'><code>R/draftkings-mlb.r</code></a>, <a href='https://github.com/dfs-with-r/coach/blob/master/R/draftkings-nba.r'><code>R/draftkings-nba.r</code></a>, <a href='https://github.com/dfs-with-r/coach/blob/master/R/draftkings-nfl.r'><code>R/draftkings-nfl.r</code></a>, and 10 more</small>
-    <div class="hidden name"><code>model_generic.Rd</code></div>
+    <h1>Convert lineup to submission format</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dfs-with-r/coach/blob/master/R/write.r'><code>R/write.r</code></a></small>
+    <div class="hidden name"><code>convert_lineup.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Generic fantasy model</p>
+    <p>Convert lineup to submission format</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>model_dk_mlb</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_dk_nba</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_dk_nfl</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_fd_mlb</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_fd_nba</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_fd_nfl</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_fd_nhl</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_fd_wnba</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_fdr_mlb</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_fdr_nba</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_fdr_nfl</span>(<span class='no'>data</span>, <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())
-
-<span class='fu'>model_generic</span>(<span class='no'>data</span>, <span class='no'>total_salary</span>, <span class='no'>roster_size</span>, <span class='kw'>max_from_team</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>existing_rosters</span> <span class='kw'>=</span> <span class='fu'>list</span>())</pre>
+    <pre class="usage"><span class='fu'>convert_lineup</span>(<span class='no'>lineup</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>data frame</p></td>
-    </tr>
-    <tr>
-      <th>existing_rosters</th>
-      <td><p>list of integer vectors specifying rosters to exclude</p></td>
-    </tr>
-    <tr>
-      <th>total_salary</th>
-      <td><p>maximum salary available for each lineup</p></td>
-    </tr>
-    <tr>
-      <th>roster_size</th>
-      <td><p>number of players on each lineup</p></td>
-    </tr>
-    <tr>
-      <th>max_from_team</th>
-      <td><p>maximum number of players allowed from each team</p></td>
+      <th>lineup</th>
+      <td><p>a normalized lineup</p></td>
     </tr>
     </table>
     
