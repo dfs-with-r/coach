@@ -37,7 +37,7 @@ library(coach)
 Load lineup data exported from a fantasy site and read it in. Check the documention of the `read_*_*` functions for instructions on how to export the data. For example, for Draftkings you have to goto [https://www.draftkings.com/lineup/upload](https://www.draftkings.com/lineup/upload) and select the sport and slate data to export.
 
 ```{r, eval=FALSE}
-data <- read_dk_nfl("mydata.csv")
+data <- read_dk("mydata.csv")
 print(data)
 ```
 
@@ -49,7 +49,7 @@ slim <- function(df) {
   df[order(-df[["salary"]]), use_cols]
 }
 
-data <- read_dk_nfl("tests/testthat/data/dk-nfl.csv")
+data <- read_dk("tests/testthat/data/dk-nfl.csv")
 print(slim(data))
 ```
 
