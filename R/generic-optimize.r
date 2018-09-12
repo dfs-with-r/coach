@@ -17,8 +17,9 @@ optimize_generic <- function(data, model, L = 3L,
                              stack_teams = NULL,
                              min_salary = NULL) {
   # check inputs
-  results <- vector("list", L)
-  solver <- match.arg(solver)
+  if (any(is.na(data[["fpts_proj"]]))) {
+    stop("fpts_proj can't have NAs", call. = FALSE)
+  }
 
   # add bans/locks
   model <- add_player_lock_constraint(model, locks)
@@ -35,6 +36,8 @@ optimize_generic <- function(data, model, L = 3L,
   }
 
   # optimize
+  results <- vector("list", L)
+  solver <- match.arg(solver)
   for (i in 1:L) {
     # solve
     result <- optimize_generic_one(data, model, solver)
