@@ -189,7 +189,7 @@ write_lineups <- function(lineups, path = NULL) {
   df <- do.call(rbind, converted_lineups)
 
   if (!is.null(path)) {
-    utils::write.csv(df, file = path, row.names = FALSE)
+    utils::write.csv(df, file = path, row.names = FALSE, quote = FALSE)
   }
 
   df
