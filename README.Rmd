@@ -56,6 +56,7 @@ print(slim(data))
 Add your custom projections into a column called `fpts_proj`. This is very important! If your projections aren't good then your optimized lineups won't be good either. For this example we'll just add some random noise to the player's season average fantasy points.
 
 ```{r eval=FALSE}
+set.seed(100)
 n <- nrow(data)
 data$fpts_proj <- rnorm(n, data$fpts_avg)
 print(data)
