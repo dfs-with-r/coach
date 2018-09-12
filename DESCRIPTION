@@ -25,6 +25,6 @@ Imports:
     stats,
     tibble,
     utils
-URL: https://github.com/zamorarr/coach, https://zamorarr.github.io/coach/
-BugReports: https://github.com/zamorarr/coach/issues
+URL: https://github.com/dfs-with-r/coach, https://dfs-with-r.github.io/coach/
+BugReports: https://github.com/dfs-with-r/coach/issues
 Language: en-US
