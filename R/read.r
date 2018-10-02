@@ -36,7 +36,7 @@ read_dk <- function(path) {
 
   # select columns for model
   df_model <- df[c("id", "name", "teamabbrev", "opp_team", "location",
-                   "roster_position", "salary", "avgpointspergame", "fpts_proj")]
+                   "position", "salary", "avgpointspergame", "fpts_proj")]
   colnames(df_model) <- c("player_id", "player", "team", "opp_team", "location",
                           "position", "salary", "fpts_avg", "fpts_proj")
 
