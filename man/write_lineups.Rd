@@ -11,7 +11,7 @@ write_lineups(lineups, path = NULL, ...)
 
 \item{path}{local disk path}
 
-\item{...}{additional args passed to \code{\link{normalize_lineup}}}
+\item{...}{additional arguments passed to \code{\link{normalize_lineup}}}
 }
 \description{
 Write lineups for submission

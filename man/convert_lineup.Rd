@@ -9,7 +9,7 @@ convert_lineup(lineup, ...)
 \arguments{
 \item{lineup}{a normalized lineup}
 
-\item{...}{additional args passed to \code{\link{normalize_lineup}}}
+\item{...}{additional arguments passed to \code{\link{normalize_lineup}}}
 }
 \description{
 Convert lineup to submission format

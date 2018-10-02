@@ -171,7 +171,7 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel"),
 #' Convert lineup to submission format
 #'
 #' @param lineup a normalized lineup
-#' @param ... additional args passed to \code{\link{normalize_lineup}}
+#' @param ... additional arguments passed to \code{\link{normalize_lineup}}
 #' @keywords internal
 convert_lineup <- function(lineup, ...) {
   new_lineup <- normalize_lineup(lineup, ...)
@@ -186,7 +186,7 @@ convert_lineup <- function(lineup, ...) {
 #'
 #' @param lineups a normalized lineup
 #' @param path local disk path
-#' @param ... additional args passed to \code{\link{normalize_lineup}}
+#' @param ... additional arguments passed to \code{\link{normalize_lineup}}
 #' @export
 write_lineups <- function(lineups, path = NULL, ...) {
   split_lineups <- split(lineups, lineups[["lineup"]])
