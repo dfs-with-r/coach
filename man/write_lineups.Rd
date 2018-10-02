@@ -4,12 +4,14 @@
 \alias{write_lineups}
 \title{Write lineups for submission}
 \usage{
-write_lineups(lineups, path = NULL)
+write_lineups(lineups, path = NULL, ...)
 }
 \arguments{
 \item{lineups}{a normalized lineup}
 
 \item{path}{local disk path}
+
+\item{...}{additional args passed to \code{\link{normalize_lineup}}}
 }
 \description{
 Write lineups for submission

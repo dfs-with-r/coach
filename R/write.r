@@ -171,10 +171,14 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel"),
 #' Convert lineup to submission format
 #'
 #' @param lineup a normalized lineup
+#' @param ... additional args passed to \code{\link{normalize_lineup}}
 #' @keywords internal
-convert_lineup <- function(lineup) {
-  x <- as.data.frame(as.list(lineup[["player_id"]]), stringsAsFactors = FALSE)
-  colnames(x) <- lineup[["position"]]
+convert_lineup <- function(lineup, ...) {
+  new_lineup <- normalize_lineup(lineup, ...)
+  player_ids <- as.list(new_lineup[["player_id"]])
+
+  x <- as.data.frame(player_ids, stringsAsFactors = FALSE)
+  colnames(x) <- new_lineup[["position"]]
   x
 }
 
@@ -182,10 +186,11 @@ convert_lineup <- function(lineup) {
 #'
 #' @param lineups a normalized lineup
 #' @param path local disk path
+#' @param ... additional args passed to \code{\link{normalize_lineup}}
 #' @export
-write_lineups <- function(lineups, path = NULL) {
+write_lineups <- function(lineups, path = NULL, ...) {
   split_lineups <- split(lineups, lineups[["lineup"]])
-  converted_lineups <- lapply(split_lineups, convert_lineup)
+  converted_lineups <- lapply(split_lineups, convert_lineup, ...)
   df <- do.call(rbind, converted_lineups)
 
   if (!is.null(path)) {

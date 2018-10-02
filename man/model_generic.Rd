@@ -20,13 +20,13 @@
 \usage{
 model_dk_mlb(data, existing_rosters = list())
 
-model_dk_nba(data, existing_rosters = list())
+model_dk_nba(data, ...)
 
 model_dk_nfl(data, existing_rosters = list())
 
 model_fd_mlb(data, existing_rosters = list())
 
-model_fd_nba(data, existing_rosters = list())
+model_fd_nba(data, ...)
 
 model_fd_nfl(data, existing_rosters = list())
 
@@ -41,7 +41,7 @@ model_fdr_nba(data, existing_rosters = list())
 model_fdr_nfl(data, existing_rosters = list())
 
 model_generic(data, total_salary, roster_size, max_from_team = 4,
-  existing_rosters = list())
+  existing_rosters = list(), type = c("binary", "continuous"))
 }
 \arguments{
 \item{data}{data frame}
@@ -53,6 +53,8 @@ model_generic(data, total_salary, roster_size, max_from_team = 4,
 \item{roster_size}{number of players on each lineup}
 
 \item{max_from_team}{maximum number of players allowed from each team}
+
+\item{type}{binary or continuous optimization}
 }
 \description{
 Generic fantasy model
