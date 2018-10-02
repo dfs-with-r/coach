@@ -48,6 +48,8 @@ model_generic(data, total_salary, roster_size, max_from_team = 4,
 
 \item{existing_rosters}{list of integer vectors specifying rosters to exclude}
 
+\item{...}{extra arguments passed to \code{\link{model_generic}}}
+
 \item{total_salary}{maximum salary available for each lineup}
 
 \item{roster_size}{number of players on each lineup}

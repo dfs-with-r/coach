@@ -1,6 +1,6 @@
 #' @rdname model_generic
 #' @export
-model_dk_nba <- function(data, existing_rosters = list()) {
+model_dk_nba <- function(data, ...) {
 
   # params
   total_salary <- 50E3
@@ -8,7 +8,7 @@ model_dk_nba <- function(data, existing_rosters = list()) {
   max_from_team <- 5
 
   # build model
-  model <- model_generic(data, total_salary, roster_size, max_from_team, existing_rosters) %>%
+  model <- model_generic(data, total_salary, roster_size, max_from_team, ...) %>%
     add_dk_nba_roster_positions_constraint(data)
 
   model

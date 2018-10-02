@@ -4,10 +4,13 @@
 #' @param roster_size number of players on each lineup
 #' @param max_from_team maximum number of players allowed from each team
 #' @param existing_rosters list of integer vectors specifying rosters to exclude
+#' @param type binary or continuous optimization
+#' @param ... extra arguments passed to \code{\link{model_generic}}
 #' @importFrom ompr MIPModel MILPModel add_variable
 model_generic <- function(data, total_salary, roster_size,
                           max_from_team = 4,
-                          existing_rosters = list()) {
+                          existing_rosters = list(),
+                          type = c("binary", "continuous")) {
   # check cols
   needed_cols <- c("row_id", "player_id", "player", "team", "position",
                    "salary", "fpts_proj")
@@ -28,9 +31,18 @@ model_generic <- function(data, total_salary, roster_size,
   total_teams <- length(unique(team_int))
   is_team <- function(j, i) as.integer(team_int[i] == j)
 
+  # base model. continuous vs binary
+  type <- match.arg(type)
+  if (type == "binary") {
+    base_model <- MILPModel() %>%
+      add_variable(x[i], i = 1:n, type = "binary")
+  } else {
+    base_model <- MILPModel() %>%
+      add_variable(x[i], i = 1:n, type = "continuous", lb = 0, ub = 1)
+  }
+
   # base model
-  MILPModel() %>%
-    add_variable(x[i], i = 1:n, type = "binary") %>%
+  base_model %>%
     add_salary_contraint(n, salary, total_salary) %>%
     add_existing_rosters_constraint(existing_rosters) %>%
     add_roster_size_constraint(n, roster_size) %>%

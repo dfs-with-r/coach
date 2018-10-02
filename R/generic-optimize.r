@@ -67,13 +67,20 @@ optimize_generic_one <- function(data, model, solver = c("glpk", "symphony", "cb
   solver <- match.arg(solver)
   result <- solve_model(model, with_ROI(solver = solver))
 
+  # determine if continuous or binary optimization
+  type <- model$variables$x$type
+
   # extract selected
   solution <- get_solution(result, x[i])
-  matches <- solution[solution[["value"]] == 1,]
-  matches <- matches$i
 
-  # optimal lineup
-  lineup <- tibble::as_tibble(data[matches, ])
+  if (type == "binary") {
+    matches <- solution[solution[["value"]] == 1,]
+    matches <- matches$i
+    lineup <- tibble::as_tibble(data[matches, ])
+  } else {
+    lineup <- data
+    lineup[["x"]] <- solution[["value"]]
+  }
 
   structure(
     list(
