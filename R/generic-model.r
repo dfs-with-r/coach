@@ -173,13 +173,12 @@ add_unique_id_constraint <- function(model, data) {
   n <- nrow(data)
   ids <- unique(data[["player_id"]])
 
-  has_id <- function(i, id) as.integer(data[["player_id"]] == id)
+  has_id <- function(i, id) as.integer(data[["player_id"]][i] == id)
 
   # only need to apply this constraint to players that appear more than once
   multi_players <- names(which(table(data[["player_id"]]) > 1))
-  are_multi <- which(data[["player_id"]] %in% multi_players)
 
-  for (id in are_multi) {
+  for (id in multi_players) {
     model <- add_constraint(model, sum_expr(colwise(has_id(i, id)) * x[i], i = 1:n) <= 1)
   }
 
