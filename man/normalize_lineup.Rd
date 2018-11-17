@@ -4,8 +4,9 @@
 \alias{normalize_lineup}
 \title{Normalize a lineup based on position}
 \usage{
-normalize_lineup(lineup, site = c("draftkings", "fanduel"),
-  sport = c("nfl", "mlb", "nba", "nhl"), colname = "position")
+normalize_lineup(lineup, site = c("draftkings", "fanduel",
+  "fantasydraft"), sport = c("nfl", "mlb", "nba", "nhl"),
+  colname = "position")
 }
 \arguments{
 \item{lineup}{a data frame lineup}

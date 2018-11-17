@@ -7,6 +7,7 @@
 \alias{normalize_dk_nhl}
 \alias{normalize_fd_nfl}
 \alias{normalize_fd_mlb}
+\alias{normalize_fdr_nba}
 \title{Normalize positions by allowed counts}
 \usage{
 normalize_positions(pos, pos_max, wildcard)
@@ -20,6 +21,8 @@ normalize_dk_nhl(pos)
 normalize_fd_nfl(pos)
 
 normalize_fd_mlb(pos)
+
+normalize_fdr_nba(pos)
 }
 \arguments{
 \item{pos}{a character vector of existing positions}

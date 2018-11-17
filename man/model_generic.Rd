@@ -39,7 +39,7 @@ model_fd_wnba(data, existing_rosters = list())
 
 model_fdr_mlb(data, existing_rosters = list())
 
-model_fdr_nba(data, existing_rosters = list())
+model_fdr_nba(data, ...)
 
 model_fdr_nfl(data, existing_rosters = list())
 
