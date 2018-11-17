@@ -66,8 +66,9 @@ read_dk <- function(path) {
 read_fd <- function(path) {
   df <- utils::read.csv(path, stringsAsFactors = FALSE, check.names = FALSE)
 
-  # keep only first columns
-  df <- df[1:12]
+  # keep only first columns and fpts_proj
+  cols_to_keep <- c(1:12, which(colnames(df) == "fpts_proj"))
+  df <- df[cols_to_keep]
 
   # add fpts_proj if it doesn't exist
   if (!("fpts_proj" %in% colnames(df))) {
