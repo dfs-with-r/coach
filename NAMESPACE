@@ -2,10 +2,12 @@
 
 S3method(print,lineup)
 export(model_dk_mlb)
+export(model_dk_nascar)
 export(model_dk_nba)
 export(model_dk_nfl)
 export(model_dk_nhl)
 export(model_fd_mlb)
+export(model_fd_nascar)
 export(model_fd_nba)
 export(model_fd_nfl)
 export(model_fd_nhl)

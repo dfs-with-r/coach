@@ -108,6 +108,16 @@ normalize_fd_mlb <- function(pos) {
 
 #' @rdname normalize_positions
 #' @keywords internal
+normalize_fd_nascar <- function(pos) {
+  stopifnot(length(pos) == 5L)
+
+  # normalize D to driver
+  new_pos <- gsub("^D$", "Driver", pos)
+  new_pos
+}
+
+#' @rdname normalize_positions
+#' @keywords internal
 normalize_fdr_nba <- function(pos) {
   stopifnot(length(pos) == 8L)
 
@@ -135,7 +145,7 @@ normalize_fdr_nba <- function(pos) {
 #' @param colname default column to apply normalization to
 #' @export
 normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasydraft"),
-                             sport = c("nfl", "mlb", "nba", "nhl"),
+                             sport = c("nfl", "mlb", "nba", "nhl", "nascar"),
                              colname = "position") {
   site <- match.arg(site)
   sport <- match.arg(sport)
@@ -158,6 +168,10 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasyd
       f <- normalize_dk_nhl
       pos_levels <- c("C", "W", "D", "G")
     }
+    else if (sport == "nascar") {
+      f <- NULL
+      pos_levels <- "D"
+    }
   } else if (site == "fanduel") {
     if (sport == "nfl") {
       f <- normalize_fd_nfl
@@ -174,6 +188,10 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasyd
     else if (sport == "nhl") {
       f <- NULL
       pos_levels <- c("C", "W", "D", "G")
+    }
+    else if (sport == "nascar") {
+      f <- normalize_fd_nascar
+      pos_levels <- "Driver"
     }
   } else if (site == "fantasydraft") {
     if (sport == "nba") {

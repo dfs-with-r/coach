@@ -7,6 +7,7 @@
 \alias{normalize_dk_nhl}
 \alias{normalize_fd_nfl}
 \alias{normalize_fd_mlb}
+\alias{normalize_fd_nascar}
 \alias{normalize_fdr_nba}
 \title{Normalize positions by allowed counts}
 \usage{
@@ -21,6 +22,8 @@ normalize_dk_nhl(pos)
 normalize_fd_nfl(pos)
 
 normalize_fd_mlb(pos)
+
+normalize_fd_nascar(pos)
 
 normalize_fdr_nba(pos)
 }

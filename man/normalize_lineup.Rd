@@ -5,7 +5,7 @@
 \title{Normalize a lineup based on position}
 \usage{
 normalize_lineup(lineup, site = c("draftkings", "fanduel",
-  "fantasydraft"), sport = c("nfl", "mlb", "nba", "nhl"),
+  "fantasydraft"), sport = c("nfl", "mlb", "nba", "nhl", "nascar"),
   colname = "position")
 }
 \arguments{
