@@ -223,7 +223,7 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasyd
 convert_lineup <- function(lineup,
                            site = c("draftkings", "fanduel", "fantasydraft"),
                            sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...) {
-  new_lineup <- normalize_lineup(lineup, ...)
+  new_lineup <- normalize_lineup(lineup, site, sport, ...)
   player_ids <- as.list(new_lineup[["player_id"]])
 
   x <- as.data.frame(player_ids, stringsAsFactors = FALSE)
@@ -248,7 +248,7 @@ convert_lineup <- function(lineup,
 write_lineups <- function(lineups, path = NULL,
                           site = c("draftkings", "fanduel", "fantasydraft"),
                           sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...) {
-  converted_lineups <- lapply(lineups, convert_lineup, ...)
+  converted_lineups <- lapply(lineups, convert_lineup, site, sport, ...)
   df <- do.call(rbind, converted_lineups)
 
   if (!is.null(path)) {
