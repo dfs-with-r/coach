@@ -4,10 +4,15 @@
 \alias{convert_lineup}
 \title{Convert lineup to submission format}
 \usage{
-convert_lineup(lineup, ...)
+convert_lineup(lineup, site = c("draftkings", "fanduel", "fantasydraft"),
+  sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...)
 }
 \arguments{
 \item{lineup}{a normalized lineup}
+
+\item{site}{name of DFS site}
+
+\item{sport}{name of sport}
 
 \item{...}{additional arguments passed to \code{\link{normalize_lineup}}}
 }

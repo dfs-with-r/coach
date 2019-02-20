@@ -4,15 +4,26 @@
 \alias{write_lineups}
 \title{Write lineups for submission}
 \usage{
-write_lineups(lineups, path = NULL, ...)
+write_lineups(lineups, path = NULL, site = c("draftkings", "fanduel",
+  "fantasydraft"), sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...)
 }
 \arguments{
 \item{lineups}{a normalized lineup}
 
 \item{path}{local disk path}
 
+\item{site}{name of DFS site}
+
+\item{sport}{name of sport}
+
 \item{...}{additional arguments passed to \code{\link{normalize_lineup}}}
 }
 \description{
 Write lineups for submission
+}
+\examples{
+\dontrun{
+lineups <- optimize_generic(nhl, model)
+write_lineups(lineups, "test.csv", site = "fanduel", sport = "nhl")
+}
 }
