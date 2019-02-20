@@ -73,4 +73,14 @@ test_that("lineup normalization fixes positions and orders rows correctly", {
   expect_equal(actual[["position"]], c("QB", "RB", "RB", "WR", "WR", "WR", "TE", "FLEX", "DST"))
 })
 
+test_that("write_lineups writes correct results", {
+  nhl <- read_fd("data/fd-nhl.csv")
+  nhl$fpts_proj <- rnorm(nrow(nhl), nhl$fpts_avg, 3)
+  model <- model_fd_nhl(nhl)
+  lineups <- optimize_generic(nhl, model)
+
+  actual <- write_lineups(lineups, site = "fanduel", sport = "nhl")
+  expect_equal(colnames(actual), c("C", "C", "W", "W", "W", "W", "D", "D", "G"))
+  expect_equal(dim(actual), c(3, 9))
+})
 

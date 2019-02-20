@@ -216,10 +216,14 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasyd
 #' Convert lineup to submission format
 #'
 #' @param lineup a normalized lineup
+#' @param site name of DFS site
+#' @param sport name of sport
 #' @param ... additional arguments passed to \code{\link{normalize_lineup}}
 #' @keywords internal
-convert_lineup <- function(lineup, ...) {
-  new_lineup <- normalize_lineup(lineup, ...)
+convert_lineup <- function(lineup,
+                           site = c("draftkings", "fanduel", "fantasydraft"),
+                           sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...) {
+  new_lineup <- normalize_lineup(lineup, site, sport, ...)
   player_ids <- as.list(new_lineup[["player_id"]])
 
   x <- as.data.frame(player_ids, stringsAsFactors = FALSE)
@@ -231,11 +235,20 @@ convert_lineup <- function(lineup, ...) {
 #'
 #' @param lineups a normalized lineup
 #' @param path local disk path
+#' @param site name of DFS site
+#' @param sport name of sport
 #' @param ... additional arguments passed to \code{\link{normalize_lineup}}
 #' @export
-write_lineups <- function(lineups, path = NULL, ...) {
-  split_lineups <- split(lineups, lineups[["lineup"]])
-  converted_lineups <- lapply(split_lineups, convert_lineup, ...)
+#'
+#' @examples
+#' \dontrun{
+#' lineups <- optimize_generic(nhl, model)
+#' write_lineups(lineups, "mylineups.csv", site = "fanduel", sport = "nhl")
+#' }
+write_lineups <- function(lineups, path = NULL,
+                          site = c("draftkings", "fanduel", "fantasydraft"),
+                          sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...) {
+  converted_lineups <- lapply(lineups, convert_lineup, site, sport, ...)
   df <- do.call(rbind, converted_lineups)
 
   if (!is.null(path)) {

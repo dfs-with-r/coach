@@ -84,3 +84,12 @@ results <- optimize_generic(data, model, L = 3)
 print(lapply(results, slim))
 ```
 
+Write these results to a file. This file can be submitted directly to the DFS site.
+
+```{r write-lineups,eval=FALSE}
+write_lineups(results, "mylineups.csv", site = "draftkings", sport = "nfl")
+```
+
+```{r write-lineups-eval,echo=FALSE}
+write_lineups(results, site = "draftkings", sport = "nfl")
+```
