@@ -32,9 +32,8 @@ library(coach)
 
 Load lineup data exported from a fantasy site and read it in. Check the
 documention of the `read_*_*` functions for instructions on how to
-export the data. For example, for Draftkings you have to goto
-<https://www.draftkings.com/lineup/upload> and select the sport and
-slate data to export.
+export the data. For example, for Draftkings you have to goto your
+contest page and select *Export to csv*.
 
 ``` r
 data <- read_dk("mydata.csv")
@@ -71,16 +70,16 @@ print(data)
     #> # A tibble: 1,015 x 7
     #>    player_id player          team  position salary fpts_avg fpts_proj
     #>    <chr>     <chr>           <chr> <chr>     <int>    <dbl>     <dbl>
-    #>  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7      24.2
-    #>  2 11192254  Todd Gurley II  LAR   RB         9300     26.5      26.1
-    #>  3 11191754  David Johnson   ARI   RB         8800     14        14.3
+    #>  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7      25.7
+    #>  2 11192254  Todd Gurley II  LAR   RB         9300     26.5      27.6
+    #>  3 11191754  David Johnson   ARI   RB         8800     14        14.7
     #>  4 11191533  Antonio Brown   PIT   WR         8600     24.6      25.1
-    #>  5 11192632  Alvin Kamara    NO    RB         8500     19.9      19.5
-    #>  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7      19.9
-    #>  7 11192079  Davante Adams   GB    WR         7800     16.1      15.3
-    #>  8 11192140  Michael Thomas  NO    WR         7800     17.6      16.4
-    #>  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9      20.6
-    #> 10 11193133  Julio Jones     ATL   WR         7600     17.3      15.2
+    #>  5 11192632  Alvin Kamara    NO    RB         8500     19.9      20.4
+    #>  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7      22.2
+    #>  7 11192079  Davante Adams   GB    WR         7800     16.1      16.6
+    #>  8 11192140  Michael Thomas  NO    WR         7800     17.6      20.1
+    #>  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9      20.7
+    #> 10 11193133  Julio Jones     ATL   WR         7600     17.3      16.8
     #> # … with 1,005 more rows
 
 Build a fantasy model. This model contains all the constraints imposed
@@ -99,45 +98,45 @@ optimize_generic(data, model, L = 3)
 
     #> [[1]]
     #> # A tibble: 9 x 7
-    #>   player_id player           team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II   LAR   RB         9300    26.5      26.1 
-    #> 2 11191533  Antonio Brown    PIT   WR         8600    24.6      25.1 
-    #> 3 11192767  Deshaun Watson   HOU   QB         6700    26.3      25.0 
-    #> 4 11191861  Jarvis Landry    CLE   WR         5500    16.4      18.7 
-    #> 5 11191680  Chris Thompson   WAS   RB         4700    15.9      16.9 
-    #> 6 11191735  Carlos Hyde      CLE   RB         4500    14.9      16.1 
-    #> 7 11192176  Sterling Shepard NYG   WR         4500    14.0      14.5 
-    #> 8 11191619  Jack Doyle       IND   TE         3600    11.6      11.3 
-    #> 9 11191349  Patriots         NE    DST        2400     7.78      9.85
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.6
+    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3       27.6
+    #> 4 11192243  Stefon Diggs   MIN   WR         6300    15.3       17.5
+    #> 5 11191680  Chris Thompson WAS   RB         4700    15.9       15.3
+    #> 6 11193143  Mohamed Sanu   ATL   WR         3800    11.4       12.3
+    #> 7 11191361  Jaguars        JAX   DST        3700    12.3       13.7
+    #> 8 11191422  Jared Cook     OAK   TE         3700     8.74      13.6
+    #> 9 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.0
     #> 
     #> [[2]]
     #> # A tibble: 9 x 7
-    #>   player_id player           team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      26.1
-    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.1
-    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      25.0
-    #> 4 11191861  Jarvis Landry    CLE   WR         5500     16.4      18.7
-    #> 5 11191680  Chris Thompson   WAS   RB         4700     15.9      16.9
-    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      14.5
-    #> 7 11191361  Jaguars          JAX   DST        3700     12.3      12.4
-    #> 8 11191619  Jack Doyle       IND   TE         3600     11.6      11.3
-    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      13.5
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.6
+    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3       27.6
+    #> 4 11191547  Mark Ingram    NO    RB         5700    16.7       16.7
+    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4       15.9
+    #> 6 11193143  Mohamed Sanu   ATL   WR         3800    11.4       12.3
+    #> 7 11191361  Jaguars        JAX   DST        3700    12.3       13.7
+    #> 8 11191422  Jared Cook     OAK   TE         3700     8.74      13.6
+    #> 9 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.0
     #> 
     #> [[3]]
     #> # A tibble: 9 x 7
     #>   player_id player           team  position salary fpts_avg fpts_proj
     #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II   LAR   RB         9300    26.5      26.1 
-    #> 2 11191533  Antonio Brown    PIT   WR         8600    24.6      25.1 
-    #> 3 11192767  Deshaun Watson   HOU   QB         6700    26.3      25.0 
-    #> 4 11191861  Jarvis Landry    CLE   WR         5500    16.4      18.7 
-    #> 5 11191680  Chris Thompson   WAS   RB         4700    15.9      16.9 
-    #> 6 11191735  Carlos Hyde      CLE   RB         4500    14.9      16.1 
-    #> 7 11192176  Sterling Shepard NYG   WR         4500    14.0      14.5 
-    #> 8 11191361  Jaguars          JAX   DST        3700    12.3      12.4 
-    #> 9 11192493  Hunter Henry     LAC   TE         2500     9.06      8.63
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300    26.5       27.6
+    #> 2 11191533  Antonio Brown    PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700    26.3       27.6
+    #> 4 11191393  Larry Fitzgerald ARI   WR         6600    17.2       18.3
+    #> 5 11192176  Sterling Shepard NYG   WR         4500    14.0       13.7
+    #> 6 11191361  Jaguars          JAX   DST        3700    12.3       13.7
+    #> 7 11191367  Frank Gore       MIA   RB         3700    11.2       13.0
+    #> 8 11191422  Jared Cook       OAK   TE         3700     8.74      13.6
+    #> 9 11191868  Kapri Bibbs      WAS   RB         3000    13.6       14.0
 
 Write these results to a file. This file can be submitted directly to
 the DFS
@@ -148,10 +147,10 @@ write_lineups(results, "mylineups.csv", site = "draftkings", sport = "nfl")
 ```
 
     #>         QB       RB       RB       WR       WR       WR       TE     FLEX
-    #> 1 11192767 11191735 11192254 11191861 11192176 11191533 11191619 11191680
-    #> 2 11192767 11192254 11191868 11191861 11192176 11191533 11191619 11191680
-    #> 3 11192767 11191735 11192254 11191861 11192176 11191533 11192493 11191680
+    #> 1 11192767 11192254 11191868 11193143 11192243 11191533 11191422 11191680
+    #> 2 11192767 11192254 11191547 11193143 11191861 11191533 11191422 11191868
+    #> 3 11192767 11192254 11191367 11191393 11192176 11191533 11191422 11191868
     #>        DST
-    #> 1 11191349
+    #> 1 11191361
     #> 2 11191361
     #> 3 11191361

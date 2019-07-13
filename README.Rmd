@@ -30,18 +30,18 @@ devtools::install_github("zamorarr/coach")
 ## Example
 Load the library.
 
-```{r message=FALSE}
+```{r load-libraies,message=FALSE}
 library(coach)
 ```
 
-Load lineup data exported from a fantasy site and read it in. Check the documention of the `read_*_*` functions for instructions on how to export the data. For example, for Draftkings you have to goto [https://www.draftkings.com/lineup/upload](https://www.draftkings.com/lineup/upload) and select the sport and slate data to export.
+Load lineup data exported from a fantasy site and read it in. Check the documention of the `read_*_*` functions for instructions on how to export the data. For example, for Draftkings you have to goto your contest page and select *Export to csv*.
 
-```{r, eval=FALSE}
+```{r preview-data,eval=FALSE}
 data <- read_dk("mydata.csv")
 print(data)
 ```
 
-```{r echo=FALSE}
+```{r preview-data2,echo=FALSE}
 # for prettier printing
 slim <- function(df) {
   cols <- c("player_id", "player", "team", "position", "salary", "fpts_avg", "fpts_proj")
@@ -55,30 +55,30 @@ print(slim(data))
 
 Add your custom projections into a column called `fpts_proj`. This is very important! If your projections aren't good then your optimized lineups won't be good either. For this example we'll just add some random noise to the player's season average fantasy points.
 
-```{r eval=FALSE}
+```{r random-proj,eval=FALSE}
 set.seed(100)
 n <- nrow(data)
 data$fpts_proj <- rnorm(n, data$fpts_avg)
 print(data)
 ```
 
-```{r echo=FALSE}
+```{r random-proj2,echo=FALSE}
 n <- nrow(data)
 data$fpts_proj <- rnorm(n, data$fpts_avg)
 print(slim(data))
 ```
 
 Build a fantasy model. This model contains all the constraints imposed by the site and sport.
-```{r}
+```{r build-model}
 model <- model_dk_nfl(data)
 ```
 
 Generate three optimized lineups using your projections and the fantasy model
-```{r eval=FALSE}
+```{r optimize-model,eval=FALSE}
 optimize_generic(data, model, L = 3)
 ```
 
-```{r echo=FALSE}
+```{r optimize-model2,echo=FALSE}
 # cleaner printing
 results <- optimize_generic(data, model, L = 3)
 print(lapply(results, slim))
@@ -90,6 +90,6 @@ Write these results to a file. This file can be submitted directly to the DFS si
 write_lineups(results, "mylineups.csv", site = "draftkings", sport = "nfl")
 ```
 
-```{r write-lineups-eval,echo=FALSE}
+```{r write-lineups2,echo=FALSE}
 write_lineups(results, site = "draftkings", sport = "nfl")
 ```

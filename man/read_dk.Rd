@@ -10,6 +10,6 @@ read_dk(path)
 \item{path}{path to csv file}
 }
 \description{
-Expects a csv from \url{https://www.draftkings.com/lineup/upload} and selecting
-the sport and slate data to export.
+Expects a csv from \url{https://www.draftkings.com/} obtained by clicking
+"Export to csv" for your contest page.
 }
