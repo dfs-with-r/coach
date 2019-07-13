@@ -1,6 +1,8 @@
 #' Read Draftkings
 #'
-#' Reads in raw file and then cleans it up
+#' Expects a csv from \url{https://www.draftkings.com/lineup/upload} and selecting
+#' the sport and slate data to export.
+#'
 #' @param path path to csv file
 #' @export
 read_dk <- function(path) {

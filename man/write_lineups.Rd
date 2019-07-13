@@ -24,6 +24,6 @@ Write lineups for submission
 \examples{
 \dontrun{
 lineups <- optimize_generic(nhl, model)
-write_lineups(lineups, "test.csv", site = "fanduel", sport = "nhl")
+write_lineups(lineups, "mylineups.csv", site = "fanduel", sport = "nhl")
 }
 }
