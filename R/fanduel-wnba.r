@@ -1,5 +1,6 @@
 #' @rdname model_generic
-model_fd_wnba <- function(data, existing_rosters = list()) {
+#' @export
+model_fd_wnba <- function(data, ...) {
 
   # params
   total_salary <- 40E3
@@ -7,7 +8,7 @@ model_fd_wnba <- function(data, existing_rosters = list()) {
   max_from_team <- 4
 
   # build model
-  model_generic(data, total_salary, roster_size, max_from_team, existing_rosters) %>%
+  model <- model_generic(data, total_salary, roster_size, max_from_team, ...) %>%
     add_fduel_wnba_roster_positions_constraint(data)
 
   model
@@ -16,6 +17,9 @@ model_fd_wnba <- function(data, existing_rosters = list()) {
 #' @importFrom ompr add_constraint sum_expr colwise
 #' @keywords internal
 add_fduel_wnba_roster_positions_constraint <- function(model, wnba) {
+  # check position names
+  assert_has_positions(wnba, c("G", "F"))
+
   # position constraint helpers
   n <- nrow(wnba)
   is_position <- function(pos) {
