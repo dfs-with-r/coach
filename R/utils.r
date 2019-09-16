@@ -66,3 +66,32 @@ parse_locations <- function(x) {
   regs <- matrix(unlist(regs), ncol = 3, byrow = TRUE)
   regs
 }
+
+#' Parse custom constraints
+#' @param x a list of constraints. See examples
+#' @keywords internal
+#' @examples
+#' \dontrun{
+#' x <- list("QB" = 1, "RB" = 2, "WR" = 3, "TE" = 1, "RB/WR/TE" = 1, "DST" = 1)
+#' parse_constraints(x)
+#' }
+parse_constraints <- function(x) {
+  # split flex positions (separated by a "/")
+  positions_split <- strsplit(names(x), "/")
+  positions_count <- vapply(positions_split, length, FUN.VALUE = integer(1L))
+
+  # unique positions
+  positions <- unique(unlist(positions_split))
+
+  # min number required for each position
+  min_count <- unlist(x[positions])
+
+  # max number allowed for each position
+  max_count <- lapply(seq_along(x), function(i) rep.int(x[[i]], positions_count[i]))
+  max_count <- tapply(unlist(max_count), unlist(positions_split), FUN = sum, simplify = FALSE)
+  max_count <- unlist(max_count[positions])
+
+  # combine into a data frame
+  data.frame(pos = positions, min = min_count, max = max_count,
+             stringsAsFactors = FALSE, row.names = NULL)
+}

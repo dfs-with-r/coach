@@ -7,6 +7,8 @@
 #' @param type binary or continuous optimization
 #' @param ... extra arguments passed to \code{\link{model_generic}}
 #' @importFrom ompr MIPModel MILPModel add_variable
+#'
+#' @export
 model_generic <- function(data, total_salary, roster_size,
                           max_from_team = 4,
                           existing_rosters = list(),
@@ -190,4 +192,53 @@ add_min_salary_constraint <- function(model, data, min_salary) {
   salary <- function(i) data[["salary"]][i]
 
   add_constraint(model, sum_expr(colwise(salary(i)) * x[i], i = 1:n) >= min_salary)
+}
+
+#' Add custom position constraints
+#'
+#' @param model a coach model
+#' @param data data frame with fpts projections
+#' @param constraints a named list with constraints. Flex or Wildcard positions should be named with a / between positions. See examples.
+#' @importFrom ompr add_constraint sum_expr
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' data <- read_dk("yourfilenamehere.csv")
+#' constraints <- list("QB" = 1, "RB" = 2, "WR" = 3, "TE" = 1, "RB/WR/TE" = 1, "DST" = 1)
+#' model <- model_generic(data, total_salary = 50E3, roster_size = 9, max_from_team = 4)
+#' model <- add_generic_positions_constraint(model, data, constraints)
+#' }
+add_generic_positions_constraint <- function(model, data, constraints) {
+  # check position names
+  constraints <- parse_constraints(constraints)
+  unique_pos <- constraints$pos
+  assert_has_positions(data, constraints$pos)
+
+  # position constraint helpers
+  n <- nrow(data)
+  is_position <- function(pos) {
+    function(i) {
+      as.integer(pos == data$position[i])
+    }
+  }
+
+  # loop over every position constraint
+  k <- nrow(constraints)
+  for(ki in seq_len(k)) {
+    # params
+    pos <- constraints$pos[ki]
+    min_count <- constraints$min[ki]
+    max_count <- constraints$max[ki]
+    f <- is_position(pos)
+
+    # minimum constraint
+    model <- add_constraint(model, sum_expr(colwise(f(i)) * x[i], i = 1:n) >= min_count)
+
+    # maximum constraint
+    model <- add_constraint(model, sum_expr(colwise(f(i)) * x[i], i = 1:n) <= max_count)
+  }
+
+  # return model
+  model
 }
