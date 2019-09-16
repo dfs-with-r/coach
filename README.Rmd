@@ -27,7 +27,7 @@ You can install the released version of coach from [github](https://github.com/z
 devtools::install_github("zamorarr/coach")
 ```
 
-## Example
+## Usage
 Load the library.
 
 ```{r load-libraies,message=FALSE}
@@ -68,6 +68,8 @@ data$fpts_proj <- rnorm(n, data$fpts_avg)
 print(slim(data))
 ```
 
+
+### Built-In Models
 Build a fantasy model. This model contains all the constraints imposed by the site and sport.
 ```{r build-model}
 model <- model_dk_nfl(data)
@@ -92,4 +94,37 @@ write_lineups(results, "mylineups.csv", site = "draftkings", sport = "nfl")
 
 ```{r write-lineups2,echo=FALSE}
 write_lineups(results, site = "draftkings", sport = "nfl")
+```
+
+### Custom Models
+You can now build custom models with the functions `model_generic()` and `add_generic_positions_constraint()`. To start, define a generic model by providing total salary allowed, roster size, and max number of players per team allowed. We will use our NFL data from above.
+
+```{r custom-model}
+model <- model_generic(data, total_salary = 50000, roster_size = 9, max_from_team = 4)
+```
+
+Now we can provide custom position constraints. These will be in the form of a named list, with FLEX or wildcard positions named with a forward slash (`/`) between positions. In the example below, we have one FLEX position that allows an RB, WR, or TE.
+
+```{r custom-positions}
+constraints <- list(
+  "QB" = 1,
+  "RB" = 2,
+  "WR" = 3,
+  "TE" = 1,
+  "RB/WR/TE" = 1,
+  "DST" = 1
+)
+model <- add_generic_positions_constraint(model, data, constraints)
+```
+
+These contraints are actually the same as the draftkings built-in model above, so we should get the same results when we optimize:
+
+```{r custom-optimization,eval=FALSE}
+optimize_generic(data, model, L = 3)
+```
+
+```{r custom-optimization2,echo=FALSE}
+# cleaner printing
+results <- optimize_generic(data, model, L = 3)
+print(lapply(results, slim))
 ```

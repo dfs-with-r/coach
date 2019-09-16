@@ -22,7 +22,7 @@ You can install the released version of coach from
 devtools::install_github("zamorarr/coach")
 ```
 
-## Example
+## Usage
 
 Load the library.
 
@@ -70,17 +70,19 @@ print(data)
     #> # A tibble: 1,015 x 7
     #>    player_id player          team  position salary fpts_avg fpts_proj
     #>    <chr>     <chr>           <chr> <chr>     <int>    <dbl>     <dbl>
-    #>  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7      25.7
-    #>  2 11192254  Todd Gurley II  LAR   RB         9300     26.5      27.6
-    #>  3 11191754  David Johnson   ARI   RB         8800     14        14.7
-    #>  4 11191533  Antonio Brown   PIT   WR         8600     24.6      25.1
+    #>  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7      24.5
+    #>  2 11192254  Todd Gurley II  LAR   RB         9300     26.5      26.6
+    #>  3 11191754  David Johnson   ARI   RB         8800     14        12.4
+    #>  4 11191533  Antonio Brown   PIT   WR         8600     24.6      23.9
     #>  5 11192632  Alvin Kamara    NO    RB         8500     19.9      20.4
-    #>  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7      22.2
-    #>  7 11192079  Davante Adams   GB    WR         7800     16.1      16.6
-    #>  8 11192140  Michael Thomas  NO    WR         7800     17.6      20.1
-    #>  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9      20.7
-    #> 10 11193133  Julio Jones     ATL   WR         7600     17.3      16.8
+    #>  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7      20.4
+    #>  7 11192079  Davante Adams   GB    WR         7800     16.1      17.1
+    #>  8 11192140  Michael Thomas  NO    WR         7800     17.6      19.6
+    #>  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9      22.0
+    #> 10 11193133  Julio Jones     ATL   WR         7600     17.3      17.1
     #> # … with 1,005 more rows
+
+### Built-In Models
 
 Build a fantasy model. This model contains all the constraints imposed
 by the site and sport.
@@ -98,45 +100,45 @@ optimize_generic(data, model, L = 3)
 
     #> [[1]]
     #> # A tibble: 9 x 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.6
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3       27.6
-    #> 4 11192243  Stefon Diggs   MIN   WR         6300    15.3       17.5
-    #> 5 11191680  Chris Thompson WAS   RB         4700    15.9       15.3
-    #> 6 11193143  Mohamed Sanu   ATL   WR         3800    11.4       12.3
-    #> 7 11191361  Jaguars        JAX   DST        3700    12.3       13.7
-    #> 8 11191422  Jared Cook     OAK   TE         3700     8.74      13.6
-    #> 9 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.0
+    #>   player_id player            team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II    LAR   RB         9300    26.5      26.6 
+    #> 2 11191533  Antonio Brown     PIT   WR         8600    24.6      23.9 
+    #> 3 11192002  Melvin Gordon III LAC   RB         6800    18.4      20.6 
+    #> 4 11192767  Deshaun Watson    HOU   QB         6700    26.3      26.6 
+    #> 5 11191680  Chris Thompson    WAS   RB         4700    15.9      15.6 
+    #> 6 11192176  Sterling Shepard  NYG   WR         4500    14.0      13.9 
+    #> 7 11193143  Mohamed Sanu      ATL   WR         3800    11.4      12.9 
+    #> 8 11193209  Eagles            PHI   DST        3000    10.8      11.5 
+    #> 9 11192493  Hunter Henry      LAC   TE         2500     9.06      9.78
     #> 
     #> [[2]]
     #> # A tibble: 9 x 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.6
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3       27.6
-    #> 4 11191547  Mark Ingram    NO    RB         5700    16.7       16.7
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4       15.9
-    #> 6 11193143  Mohamed Sanu   ATL   WR         3800    11.4       12.3
-    #> 7 11191361  Jaguars        JAX   DST        3700    12.3       13.7
-    #> 8 11191422  Jared Cook     OAK   TE         3700     8.74      13.6
-    #> 9 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.0
+    #>   player_id player            team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II    LAR   RB         9300    26.5      26.6 
+    #> 2 11191533  Antonio Brown     PIT   WR         8600    24.6      23.9 
+    #> 3 11192002  Melvin Gordon III LAC   RB         6800    18.4      20.6 
+    #> 4 11192767  Deshaun Watson    HOU   QB         6700    26.3      26.6 
+    #> 5 11192038  Brandin Cooks     LAR   WR         5600    14.0      15.8 
+    #> 6 11192176  Sterling Shepard  NYG   WR         4500    14.0      13.9 
+    #> 7 11193209  Eagles            PHI   DST        3000    10.8      11.5 
+    #> 8 11191868  Kapri Bibbs       WAS   RB         3000    13.6      12.6 
+    #> 9 11192493  Hunter Henry      LAC   TE         2500     9.06      9.78
     #> 
     #> [[3]]
     #> # A tibble: 9 x 7
-    #>   player_id player           team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II   LAR   RB         9300    26.5       27.6
-    #> 2 11191533  Antonio Brown    PIT   WR         8600    24.6       25.1
-    #> 3 11192767  Deshaun Watson   HOU   QB         6700    26.3       27.6
-    #> 4 11191393  Larry Fitzgerald ARI   WR         6600    17.2       18.3
-    #> 5 11192176  Sterling Shepard NYG   WR         4500    14.0       13.7
-    #> 6 11191361  Jaguars          JAX   DST        3700    12.3       13.7
-    #> 7 11191367  Frank Gore       MIA   RB         3700    11.2       13.0
-    #> 8 11191422  Jared Cook       OAK   TE         3700     8.74      13.6
-    #> 9 11191868  Kapri Bibbs      WAS   RB         3000    13.6       14.0
+    #>   player_id player            team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II    LAR   RB         9300    26.5      26.6 
+    #> 2 11191533  Antonio Brown     PIT   WR         8600    24.6      23.9 
+    #> 3 11192002  Melvin Gordon III LAC   RB         6800    18.4      20.6 
+    #> 4 11192767  Deshaun Watson    HOU   QB         6700    26.3      26.6 
+    #> 5 11191861  Jarvis Landry     CLE   WR         5500    16.4      15.8 
+    #> 6 11192176  Sterling Shepard  NYG   WR         4500    14.0      13.9 
+    #> 7 11193209  Eagles            PHI   DST        3000    10.8      11.5 
+    #> 8 11191868  Kapri Bibbs       WAS   RB         3000    13.6      12.6 
+    #> 9 11192493  Hunter Henry      LAC   TE         2500     9.06      9.78
 
 Write these results to a file. This file can be submitted directly to
 the DFS
@@ -147,10 +149,88 @@ write_lineups(results, "mylineups.csv", site = "draftkings", sport = "nfl")
 ```
 
     #>         QB       RB       RB       WR       WR       WR       TE     FLEX
-    #> 1 11192767 11192254 11191868 11193143 11192243 11191533 11191422 11191680
-    #> 2 11192767 11192254 11191547 11193143 11191861 11191533 11191422 11191868
-    #> 3 11192767 11192254 11191367 11191393 11192176 11191533 11191422 11191868
+    #> 1 11192767 11192002 11192254 11193143 11192176 11191533 11192493 11191680
+    #> 2 11192767 11192002 11192254 11192038 11192176 11191533 11192493 11191868
+    #> 3 11192767 11192002 11192254 11191861 11192176 11191533 11192493 11191868
     #>        DST
-    #> 1 11191361
-    #> 2 11191361
-    #> 3 11191361
+    #> 1 11193209
+    #> 2 11193209
+    #> 3 11193209
+
+### Custom Models
+
+You can now build custom models with the functions `model_generic()` and
+`add_generic_positions_constraint()`. To start, define a generic model
+by providing total salary allowed, roster size, and max number of
+players per team allowed. We will use our NFL data from
+above.
+
+``` r
+model <- model_generic(data, total_salary = 50000, roster_size = 9, max_from_team = 4)
+```
+
+Now we can provide custom position constraints. These will be in the
+form of a named list, with FLEX or wildcard positions named with a
+forward slash (`/`) between positions. In the example below, we have one
+FLEX position that allows an RB, WR, or TE.
+
+``` r
+constraints <- list(
+  "QB" = 1,
+  "RB" = 2,
+  "WR" = 3,
+  "TE" = 1,
+  "RB/WR/TE" = 1,
+  "DST" = 1
+)
+model <- add_generic_positions_constraint(model, data, constraints)
+```
+
+These contraints are actually the same as the draftkings built-in model
+above, so we should get the same results when we optimize:
+
+``` r
+optimize_generic(data, model, L = 3)
+```
+
+    #> [[1]]
+    #> # A tibble: 9 x 7
+    #>   player_id player            team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II    LAR   RB         9300    26.5      26.6 
+    #> 2 11191533  Antonio Brown     PIT   WR         8600    24.6      23.9 
+    #> 3 11192002  Melvin Gordon III LAC   RB         6800    18.4      20.6 
+    #> 4 11192767  Deshaun Watson    HOU   QB         6700    26.3      26.6 
+    #> 5 11191680  Chris Thompson    WAS   RB         4700    15.9      15.6 
+    #> 6 11192176  Sterling Shepard  NYG   WR         4500    14.0      13.9 
+    #> 7 11193143  Mohamed Sanu      ATL   WR         3800    11.4      12.9 
+    #> 8 11193209  Eagles            PHI   DST        3000    10.8      11.5 
+    #> 9 11192493  Hunter Henry      LAC   TE         2500     9.06      9.78
+    #> 
+    #> [[2]]
+    #> # A tibble: 9 x 7
+    #>   player_id player            team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II    LAR   RB         9300    26.5      26.6 
+    #> 2 11191533  Antonio Brown     PIT   WR         8600    24.6      23.9 
+    #> 3 11192002  Melvin Gordon III LAC   RB         6800    18.4      20.6 
+    #> 4 11192767  Deshaun Watson    HOU   QB         6700    26.3      26.6 
+    #> 5 11192038  Brandin Cooks     LAR   WR         5600    14.0      15.8 
+    #> 6 11192176  Sterling Shepard  NYG   WR         4500    14.0      13.9 
+    #> 7 11193209  Eagles            PHI   DST        3000    10.8      11.5 
+    #> 8 11191868  Kapri Bibbs       WAS   RB         3000    13.6      12.6 
+    #> 9 11192493  Hunter Henry      LAC   TE         2500     9.06      9.78
+    #> 
+    #> [[3]]
+    #> # A tibble: 9 x 7
+    #>   player_id player            team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II    LAR   RB         9300    26.5      26.6 
+    #> 2 11191533  Antonio Brown     PIT   WR         8600    24.6      23.9 
+    #> 3 11192002  Melvin Gordon III LAC   RB         6800    18.4      20.6 
+    #> 4 11192767  Deshaun Watson    HOU   QB         6700    26.3      26.6 
+    #> 5 11191861  Jarvis Landry     CLE   WR         5500    16.4      15.8 
+    #> 6 11192176  Sterling Shepard  NYG   WR         4500    14.0      13.9 
+    #> 7 11193209  Eagles            PHI   DST        3000    10.8      11.5 
+    #> 8 11191868  Kapri Bibbs       WAS   RB         3000    13.6      12.6 
+    #> 9 11192493  Hunter Henry      LAC   TE         2500     9.06      9.78
