@@ -6,7 +6,7 @@
 \usage{
 optimize_generic(data, model, L = 3L, solver = c("glpk", "symphony",
   "cbc"), bans = NULL, locks = NULL, stack_sizes = NULL,
-  stack_teams = NULL, min_salary = NULL)
+  stack_teams = NULL, min_salary = NULL, max_exposure = 1)
 }
 \arguments{
 \item{data}{projected fantasy points}
@@ -26,6 +26,8 @@ optimize_generic(data, model, L = 3L, solver = c("glpk", "symphony",
 \item{stack_teams}{subset of teams to use to generate stacks. NULL will use all teams.}
 
 \item{min_salary}{minimum salary to use}
+
+\item{max_exposure}{max exposure for all players or a vector of exposures for each player}
 }
 \description{
 Optimize a fantasy Model

@@ -8,6 +8,7 @@
 #' @param stack_sizes size of each stack
 #' @param stack_teams subset of teams to use to generate stacks. NULL will use all teams.
 #' @param min_salary minimum salary to use
+#' @param max_exposure max exposure for all players or a vector of exposures for each player
 #' @export
 optimize_generic <- function(data, model, L = 3L,
                              solver = c("glpk", "symphony", "cbc"),
@@ -15,7 +16,8 @@ optimize_generic <- function(data, model, L = 3L,
                              locks = NULL,
                              stack_sizes = NULL,
                              stack_teams = NULL,
-                             min_salary = NULL) {
+                             min_salary = NULL,
+                             max_exposure = 1) {
   # check inputs
   if (any(is.na(data[["fpts_proj"]]))) {
     stop("fpts_proj can't have NAs", call. = FALSE)
@@ -35,19 +37,43 @@ optimize_generic <- function(data, model, L = 3L,
     model <- add_min_salary_constraint(model, data, min_salary)
   }
 
+  # add exposure
+  n <- nrow(data)
+  nx <- length(max_exposure)
+  if (!(identical(nx, 1L) || identical(nx, n))) {
+    stop("exposure must be a single number or a vector with a number for each player", call. = FALSE)
+  }
+
+  if (any(max_exposure < 0) || any(max_exposure > 1)) {
+    stop("all exposure values must be between 0 and 1", call. = FALSE)
+  }
+
+  current_exposure <- vector("integer", n)
+  exposure_bans <- NULL
+
   # optimize
   results <- vector("list", L)
   solver <- match.arg(solver)
   for (i in 1:L) {
+    # create a temporary model to hold current exposure bans
+    model_tmp <- add_player_ban_constraint(model, bans = exposure_bans)
+
     # solve
-    result <- optimize_generic_one(data, model, solver)
+    result <- optimize_generic_one(data, model_tmp, solver)
 
     # get results
-    results[[i]] <- result$roster
-    roster_rowids <- result[["roster"]][["row_id"]]
+    roster <- result$roster
+    results[[i]] <- roster
+    roster_rowids <- roster$row_id
+    roster_ids <- roster$player_id
 
     # add constraint to not generate same lineup again
     model <- add_existing_roster_constraint(model, roster_rowids)
+
+    # add constraint to ban players from too much exposure
+    selected_players <- data$row_id[data$player_id %in% roster_ids]
+    current_exposure[selected_players] <- current_exposure[selected_players] + 1L
+    exposure_bans <- where(current_exposure/i > max_exposure)
   }
 
   results

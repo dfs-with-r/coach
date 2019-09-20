@@ -1,3 +1,14 @@
+#' Same as which, but returns NULL instead of empty vector when no match
+#' @keywords internal
+where <- function(x) {
+  result <- which(x)
+  if (length(result) == 0) {
+    NULL
+  } else {
+    result
+  }
+}
+
 #' @export
 print.lineup <- function(x, ...) {
   cat("<Lineup - Value: ", x$result$objective_value, ">\n", sep = "")
