@@ -48,6 +48,12 @@ optimize_generic <- function(data, model, L = 3L,
     stop("all exposure values must be between 0 and 1", call. = FALSE)
   }
 
+  # if there are locked players, they need to have a max_exposure of 100%
+  if (identical(nx, 1L)) max_exposure <- rep(max_exposure, n)
+  if (!is.null(locks)) {
+    max_exposure[locks] <- 1
+  }
+
   current_exposure <- vector("integer", n)
   exposure_bans <- NULL
 
