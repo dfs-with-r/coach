@@ -29,7 +29,7 @@ add_dk_nhl_roster_positions_constraint <- function(model, nhl) {
   }
 
   Ctr <- is_position("C")
-  LW <- is_position("W")
+  LW <- is_position("LW")
   RW <- is_position("RW")
   D <- is_position("D")
   G <- is_position("G")
