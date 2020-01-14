@@ -9,6 +9,7 @@
 #' @param stack_teams subset of teams to use to generate stacks. NULL will use all teams.
 #' @param min_salary minimum salary to use
 #' @param max_exposure max exposure for all players or a vector of exposures for each player
+#' @param randomness a function that takes a vector of data and randomly perturbs it
 #' @export
 optimize_generic <- function(data, model, L = 3L,
                              solver = c("glpk", "symphony", "cbc"),
@@ -17,7 +18,8 @@ optimize_generic <- function(data, model, L = 3L,
                              stack_sizes = NULL,
                              stack_teams = NULL,
                              min_salary = NULL,
-                             max_exposure = 1) {
+                             max_exposure = 1,
+                             randomness = NULL) {
   # check inputs
   if (any(is.na(data[["fpts_proj"]]))) {
     stop("fpts_proj can't have NAs", call. = FALSE)
@@ -57,6 +59,9 @@ optimize_generic <- function(data, model, L = 3L,
   current_exposure <- vector("integer", n)
   exposure_bans <- NULL
 
+  # copy of original data to modify for randomness
+  data_random <- data
+
   # optimize
   results <- vector("list", L)
   solver <- match.arg(solver)
@@ -64,8 +69,13 @@ optimize_generic <- function(data, model, L = 3L,
     # create a temporary model to hold current exposure bans
     model_tmp <- add_player_ban_constraint(model, bans = exposure_bans)
 
+    # add randomness
+    if (is.function(randomness)) {
+      data_random[["fpts_proj"]] <- randomness(data_random[["fpts_proj"]])
+    }
+
     # solve
-    result <- optimize_generic_one(data, model_tmp, solver)
+    result <- optimize_generic_one(data_random, model_tmp, solver)
 
     # get results
     roster <- result$roster

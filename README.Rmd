@@ -128,3 +128,65 @@ optimize_generic(data, model, L = 3)
 results <- optimize_generic(data, model, L = 3)
 print(lapply(results, slim))
 ```
+
+### Max Exposure
+Many times you want to limit the exposure of your lineups to certain players (due to effects not captured in the model). You can do this by setting a global `max_exposure` for every player to a constant:
+
+```{r max-exposure, eval=FALSE}
+optimize_generic(data, model, L = 5, max_exposure = 3/5)
+```
+
+
+```{r max-exposure-print, echo=FALSE}
+# cleaner printing
+results <- optimize_generic(data, model, L = 5, max_exposure = 0.5)
+print(lapply(results, slim))
+```
+
+You can also provide a vector of individual `max_exposure` for every player. I find it is typically easiest to add a column to your data frame that defaults to a global value except for a few specific instances:
+
+```{r individual-max-exposure, message=FALSE}
+library(dplyr)
+
+data <- data %>% mutate(
+  exposure = case_when(
+    player == "LeSean McCoy" ~ 0.4,
+    player == "Deshaun Watson" ~ 0.5,
+    player == "Alex Smith" ~ 0.2,
+    TRUE ~ 1
+  )
+)
+```
+
+You can then reference this column in the optimizer:
+
+```{r individual-max-exposure-optimize, eval=FALSE}
+optimize_generic(data, model, L = 5, max_exposure = data$exposure)
+```
+
+
+```{r individual-exposure-optimize-print, echo=FALSE}
+# cleaner printing
+results <- optimize_generic(data, model, L = 5, max_exposure = data$exposure)
+print(lapply(results, slim))
+```
+
+### Adding Randomness to Projections
+You can also now add randomness to your projections by providing a function. This function will run on `fpts_proj` before each lineup is generated. For example, to generate projections that are randomly distributed around a center value  with a standard deviation of 10 you could do this:
+
+```{r random-projections}
+n <- nrow(data)
+randomness <- function(x) rnorm(n, x, 10)
+```
+
+When you generate the lineups you can see how the `fpts_proj` changes between samples.
+
+```{r random-projections-optimize, eval=FALSE}
+optimize_generic(data, model, L = 5, randomness = randomness)
+```
+
+```{r random-projections-optimize-print, echo=FALSE}
+# cleaner printing
+results <- optimize_generic(data, model, L = 5, randomness = randomness)
+print(lapply(results, slim))
+```
