@@ -22,6 +22,12 @@ test_that("draftkings mlb model works", {
   testthat::expect_silent(model <- model_dk_mlb(data))
 })
 
+test_that("draftkings pga model works", {
+  positions <- c("G")
+  data[["position"]] <- sample(positions, nrow(data), replace = TRUE)
+  testthat::expect_silent(model <- model_dk_pga(data))
+})
+
 test_that("fanduel mlb model works", {
   positions <- c("P", "C", "1B", "2B", "3B", "SS", "OF")
   data[["position"]] <- sample(positions, nrow(data), replace = TRUE)
@@ -45,6 +51,12 @@ test_that("fanduel nba model works", {
   positions <- c("PG", "SG", "SF", "PF", "C")
   data[["position"]] <- sample(positions, nrow(data), replace = TRUE)
   testthat::expect_silent(model <- model_fd_nba(data))
+})
+
+test_that("fanduel pga model works", {
+  positions <- c("G")
+  data[["position"]] <- sample(positions, nrow(data), replace = TRUE)
+  testthat::expect_silent(model <- model_fd_pga(data))
 })
 
 test_that("fantasydraft nba model works", {
