@@ -36,7 +36,7 @@ test_that("fanduel reader works", {
   expect_equal(ncol(nhl), ncols)
 
   pga <- read_fd("data/fd-pga.csv")
-  expect_equal(nrow(pga), 156)
+  expect_equal(nrow(pga), 152)
   expect_equal(ncol(pga), ncols)
 })
 
