@@ -145,7 +145,7 @@ normalize_fdr_nba <- function(pos) {
 #' @param colname default column to apply normalization to
 #' @export
 normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasydraft"),
-                             sport = c("nfl", "mlb", "nba", "nhl", "nascar"),
+                             sport = c("nfl", "mlb", "nba", "nhl", "nascar", "pga"),
                              colname = "position") {
   site <- match.arg(site)
   sport <- match.arg(sport)
@@ -172,6 +172,10 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasyd
       f <- NULL
       pos_levels <- "D"
     }
+    else if (sport == "pga") {
+      f <- NULL
+      pos_levels <- "G"
+    }
   } else if (site == "fanduel") {
     if (sport == "nfl") {
       f <- normalize_fd_nfl
@@ -192,6 +196,10 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasyd
     else if (sport == "nascar") {
       f <- normalize_fd_nascar
       pos_levels <- "Driver"
+    }
+    else if (sport == "pga") {
+      f <- NULL
+      pos_levels <- "G"
     }
   } else if (site == "fantasydraft") {
     if (sport == "nba") {
@@ -222,7 +230,7 @@ normalize_lineup <- function(lineup, site = c("draftkings", "fanduel", "fantasyd
 #' @keywords internal
 convert_lineup <- function(lineup,
                            site = c("draftkings", "fanduel", "fantasydraft"),
-                           sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...) {
+                           sport = c("nfl", "mlb", "nba", "nhl", "nascar", "pga"), ...) {
   new_lineup <- normalize_lineup(lineup, site, sport, ...)
   player_ids <- as.list(new_lineup[["player_id"]])
 
@@ -247,7 +255,7 @@ convert_lineup <- function(lineup,
 #' }
 write_lineups <- function(lineups, path = NULL,
                           site = c("draftkings", "fanduel", "fantasydraft"),
-                          sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...) {
+                          sport = c("nfl", "mlb", "nba", "nhl", "nascar", "pga"), ...) {
   converted_lineups <- lapply(lineups, convert_lineup, site, sport, ...)
   df <- do.call(rbind, converted_lineups)
 
