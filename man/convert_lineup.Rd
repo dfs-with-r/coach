@@ -5,7 +5,7 @@
 \title{Convert lineup to submission format}
 \usage{
 convert_lineup(lineup, site = c("draftkings", "fanduel", "fantasydraft"),
-  sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...)
+  sport = c("nfl", "mlb", "nba", "nhl", "nascar", "pga"), ...)
 }
 \arguments{
 \item{lineup}{a normalized lineup}

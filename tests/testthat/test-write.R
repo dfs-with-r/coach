@@ -84,3 +84,25 @@ test_that("write_lineups writes correct results", {
   expect_equal(dim(actual), c(3, 9))
 })
 
+test_that("write_lineups writes correct results for draftkings pga", {
+  pga <- read_dk("data/dk-pga.csv")
+  pga$fpts_proj <- rnorm(nrow(pga), pga$fpts_avg, 3)
+  model <- model_dk_pga(pga)
+  lineups <- optimize_generic(pga, model)
+
+  actual <- write_lineups(lineups, site = "draftkings", sport = "pga")
+  expect_equal(colnames(actual), c("G", "G", "G", "G", "G", "G"))
+  expect_equal(dim(actual), c(3, 6))
+})
+
+test_that("write_lineups writes correct results for fanduel pga", {
+  pga <- read_fd("data/fd-pga.csv")
+  pga$fpts_proj <- rnorm(nrow(pga), pga$fpts_avg, 3)
+  model <- model_fd_pga(pga)
+  lineups <- optimize_generic(pga, model)
+
+  actual <- write_lineups(lineups, site = "fanduel", sport = "pga")
+  expect_equal(colnames(actual), c("G", "G", "G", "G", "G", "G"))
+  expect_equal(dim(actual), c(3, 6))
+})
+

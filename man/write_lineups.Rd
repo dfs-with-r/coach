@@ -5,7 +5,8 @@
 \title{Write lineups for submission}
 \usage{
 write_lineups(lineups, path = NULL, site = c("draftkings", "fanduel",
-  "fantasydraft"), sport = c("nfl", "mlb", "nba", "nhl", "nascar"), ...)
+  "fantasydraft"), sport = c("nfl", "mlb", "nba", "nhl", "nascar",
+  "pga"), ...)
 }
 \arguments{
 \item{lineups}{a normalized lineup}
