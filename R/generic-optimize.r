@@ -71,7 +71,7 @@ optimize_generic <- function(data, model, L = 3L,
 
     # add randomness
     if (is.function(randomness)) {
-      data_random[["fpts_proj"]] <- randomness(data_random[["fpts_proj"]])
+      data_random[["fpts_proj"]] <- randomness(data[["fpts_proj"]])
     }
 
     # solve
