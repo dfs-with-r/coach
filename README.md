@@ -21,7 +21,7 @@ You can install the released version of coach from
 [github](https://github.com/zamorarr/coach) with:
 
 ``` r
-devtools::install_github("zamorarr/coach")
+remotes::install_github("zamorarr/coach")
 ```
 
 ## Usage
@@ -72,16 +72,16 @@ print(data)
     #> # A tibble: 1,015 × 7
     #>    player_id player          team  position salary fpts_avg fpts_proj
     #>    <chr>     <chr>           <chr> <chr>     <int>    <dbl>     <dbl>
-    #>  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7      24.0
-    #>  2 11192254  Todd Gurley II  LAR   RB         9300     26.5      27.2
-    #>  3 11191754  David Johnson   ARI   RB         8800     14        14.0
-    #>  4 11191533  Antonio Brown   PIT   WR         8600     24.6      25.0
-    #>  5 11192632  Alvin Kamara    NO    RB         8500     19.9      20.1
-    #>  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7      22.0
+    #>  1 11191729  Le'Veon Bell    PIT   RB         9400     24.7      25.8
+    #>  2 11192254  Todd Gurley II  LAR   RB         9300     26.5      27.0
+    #>  3 11191754  David Johnson   ARI   RB         8800     14        13.0
+    #>  4 11191533  Antonio Brown   PIT   WR         8600     24.6      25.1
+    #>  5 11192632  Alvin Kamara    NO    RB         8500     19.9      19.2
+    #>  6 11191840  DeAndre Hopkins HOU   WR         8300     21.7      21.0
     #>  7 11192079  Davante Adams   GB    WR         7800     16.1      15.4
-    #>  8 11192140  Michael Thomas  NO    WR         7800     17.6      17.6
-    #>  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9      21.5
-    #> 10 11193133  Julio Jones     ATL   WR         7600     17.3      18.6
+    #>  8 11192140  Michael Thomas  NO    WR         7800     17.6      16.1
+    #>  9 11192363  Ezekiel Elliott DAL   RB         7700     21.9      21.4
+    #> 10 11193133  Julio Jones     ATL   WR         7600     17.3      17.3
     #> # … with 1,005 more rows
 
 ### Built-In Models
@@ -102,45 +102,45 @@ optimize_generic(data, model, L = 3)
 
     #> [[1]]
     #> # A tibble: 9 × 7
-    #>   player_id player           team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      27.2
-    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.0
-    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      26.2
-    #> 4 11191547  Mark Ingram      NO    RB         5700     16.7      18.1
-    #> 5 11191861  Jarvis Landry    CLE   WR         5500     16.4      18.6
-    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      13.2
-    #> 7 11191619  Jack Doyle       IND   TE         3600     11.6      11.9
-    #> 8 11193209  Eagles           PHI   DST        3000     10.8      11.2
-    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      12.9
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3       25.2
+    #> 4 11191538  Travis Kelce   KC    TE         6400    16.4       17.8
+    #> 5 11192302  Cooper Kupp    LAR   WR         5200    12.8       14.6
+    #> 6 11191680  Chris Thompson WAS   RB         4700    15.9       16.5
+    #> 7 11193143  Mohamed Sanu   ATL   WR         3800    11.4       11.7
+    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears          CHI   DST        2300     8.62      10.7
     #> 
     #> [[2]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3      26.2 
-    #> 4 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11191619  Jack Doyle     IND   TE         3600    11.6      11.9 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11191338  Cowboys        DAL   DST        2300     7.19      8.60
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      27.0
+    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      25.2
+    #> 4 11191538  Travis Kelce     KC    TE         6400     16.4      17.8
+    #> 5 11191680  Chris Thompson   WAS   RB         4700     15.9      16.5
+    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      13.5
+    #> 7 11193143  Mohamed Sanu     ATL   WR         3800     11.4      11.7
+    #> 8 11193209  Eagles           PHI   DST        3000     10.8      11.7
+    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      14.4
     #> 
     #> [[3]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3      26.2 
-    #> 4 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11193209  Eagles         PHI   DST        3000    10.8      11.2 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11192493  Hunter Henry   LAC   TE         2500     9.06      9.19
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown    PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700    26.3       25.2
+    #> 4 11191538  Travis Kelce     KC    TE         6400    16.4       17.8
+    #> 5 11191680  Chris Thompson   WAS   RB         4700    15.9       16.5
+    #> 6 11192176  Sterling Shepard NYG   WR         4500    14.0       13.5
+    #> 7 11191399  Ted Ginn Jr.     NO    WR         4300    12.0       12.5
+    #> 8 11191868  Kapri Bibbs      WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears            CHI   DST        2300     8.62      10.7
 
 Write these results to a file. This file can be submitted directly to
 the DFS site.
@@ -150,13 +150,13 @@ write_lineups(results, "mylineups.csv", site = "draftkings", sport = "nfl")
 ```
 
     #>         QB       RB       RB       WR       WR       WR       TE     FLEX
-    #> 1 11192767 11192254 11191547 11191861 11192176 11191533 11191619 11191868
-    #> 2 11192767 11191735 11192254 11191861 11192749 11191533 11191619 11191868
-    #> 3 11192767 11191735 11192254 11191861 11192749 11191533 11192493 11191868
+    #> 1 11192767 11192254 11191868 11193143 11192302 11191533 11191538 11191680
+    #> 2 11192767 11192254 11191868 11193143 11192176 11191533 11191538 11191680
+    #> 3 11192767 11192254 11191868 11191399 11192176 11191533 11191538 11191680
     #>        DST
-    #> 1 11193209
-    #> 2 11191338
-    #> 3 11193209
+    #> 1 11191335
+    #> 2 11193209
+    #> 3 11191335
 
 ### Custom Models
 
@@ -195,45 +195,45 @@ optimize_generic(data, model, L = 3)
 
     #> [[1]]
     #> # A tibble: 9 × 7
-    #>   player_id player           team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      27.2
-    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.0
-    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      26.2
-    #> 4 11191547  Mark Ingram      NO    RB         5700     16.7      18.1
-    #> 5 11191861  Jarvis Landry    CLE   WR         5500     16.4      18.6
-    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      13.2
-    #> 7 11191619  Jack Doyle       IND   TE         3600     11.6      11.9
-    #> 8 11193209  Eagles           PHI   DST        3000     10.8      11.2
-    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      12.9
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3       25.2
+    #> 4 11191538  Travis Kelce   KC    TE         6400    16.4       17.8
+    #> 5 11192302  Cooper Kupp    LAR   WR         5200    12.8       14.6
+    #> 6 11191680  Chris Thompson WAS   RB         4700    15.9       16.5
+    #> 7 11193143  Mohamed Sanu   ATL   WR         3800    11.4       11.7
+    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears          CHI   DST        2300     8.62      10.7
     #> 
     #> [[2]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3      26.2 
-    #> 4 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11191619  Jack Doyle     IND   TE         3600    11.6      11.9 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11191338  Cowboys        DAL   DST        2300     7.19      8.60
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      27.0
+    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      25.2
+    #> 4 11191538  Travis Kelce     KC    TE         6400     16.4      17.8
+    #> 5 11191680  Chris Thompson   WAS   RB         4700     15.9      16.5
+    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      13.5
+    #> 7 11193143  Mohamed Sanu     ATL   WR         3800     11.4      11.7
+    #> 8 11193209  Eagles           PHI   DST        3000     10.8      11.7
+    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      14.4
     #> 
     #> [[3]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3      26.2 
-    #> 4 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11193209  Eagles         PHI   DST        3000    10.8      11.2 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11192493  Hunter Henry   LAC   TE         2500     9.06      9.19
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown    PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700    26.3       25.2
+    #> 4 11191538  Travis Kelce     KC    TE         6400    16.4       17.8
+    #> 5 11191680  Chris Thompson   WAS   RB         4700    15.9       16.5
+    #> 6 11192176  Sterling Shepard NYG   WR         4500    14.0       13.5
+    #> 7 11191399  Ted Ginn Jr.     NO    WR         4300    12.0       12.5
+    #> 8 11191868  Kapri Bibbs      WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears            CHI   DST        2300     8.62      10.7
 
 ### Max Exposure
 
@@ -247,73 +247,73 @@ optimize_generic(data, model, L = 5, max_exposure = 3/5)
 
     #> [[1]]
     #> # A tibble: 9 × 7
-    #>   player_id player           team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      27.2
-    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.0
-    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      26.2
-    #> 4 11191547  Mark Ingram      NO    RB         5700     16.7      18.1
-    #> 5 11191861  Jarvis Landry    CLE   WR         5500     16.4      18.6
-    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      13.2
-    #> 7 11191619  Jack Doyle       IND   TE         3600     11.6      11.9
-    #> 8 11193209  Eagles           PHI   DST        3000     10.8      11.2
-    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      12.9
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3       25.2
+    #> 4 11191538  Travis Kelce   KC    TE         6400    16.4       17.8
+    #> 5 11192302  Cooper Kupp    LAR   WR         5200    12.8       14.6
+    #> 6 11191680  Chris Thompson WAS   RB         4700    15.9       16.5
+    #> 7 11193143  Mohamed Sanu   ATL   WR         3800    11.4       11.7
+    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears          CHI   DST        2300     8.62      10.7
     #> 
     #> [[2]]
     #> # A tibble: 9 × 7
-    #>   player_id player            team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11191840  DeAndre Hopkins   HOU   WR         8300    21.7      22.0 
-    #> 2 11192722  Leonard Fournette JAX   RB         7100    19.2      20.5 
-    #> 3 11192749  Tyreek Hill       KC    WR         6500    17.2      18.8 
-    #> 4 11191517  Russell Wilson    SEA   QB         6200    23.2      22.7 
-    #> 5 11191493  LeSean McCoy      BUF   RB         6000    17.3      17.8 
-    #> 6 11192276  Devin Funchess    CAR   WR         5200    12.4      14.5 
-    #> 7 11191735  Carlos Hyde       CLE   RB         4500    14.9      14.9 
-    #> 8 11191361  Jaguars           JAX   DST        3700    12.3      11.6 
-    #> 9 11192493  Hunter Henry      LAC   TE         2500     9.06      9.19
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11191729  Le'Veon Bell     PIT   RB         9400    24.7      25.8 
+    #> 2 11192363  Ezekiel Elliott  DAL   RB         7700    21.9      21.4 
+    #> 3 11191791  Robert Woods     LAR   WR         6200    15.1      17.0 
+    #> 4 11191517  Russell Wilson   SEA   QB         6200    23.2      23.6 
+    #> 5 11191861  Jarvis Landry    CLE   WR         5500    16.4      15.7 
+    #> 6 11191735  Carlos Hyde      CLE   RB         4500    14.9      15.7 
+    #> 7 11192176  Sterling Shepard NYG   WR         4500    14.0      13.5 
+    #> 8 11193209  Eagles           PHI   DST        3000    10.8      11.7 
+    #> 9 11191758  Cameron Brate    TB    TE         3000     8.94      9.60
     #> 
     #> [[3]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3      26.2 
-    #> 4 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11191619  Jack Doyle     IND   TE         3600    11.6      11.9 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11191338  Cowboys        DAL   DST        2300     7.19      8.60
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      27.0
+    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      25.2
+    #> 4 11191538  Travis Kelce     KC    TE         6400     16.4      17.8
+    #> 5 11191680  Chris Thompson   WAS   RB         4700     15.9      16.5
+    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      13.5
+    #> 7 11193143  Mohamed Sanu     ATL   WR         3800     11.4      11.7
+    #> 8 11193209  Eagles           PHI   DST        3000     10.8      11.7
+    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      14.4
     #> 
     #> [[4]]
     #> # A tibble: 9 × 7
     #>   player_id player            team  position salary fpts_avg fpts_proj
     #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11191840  DeAndre Hopkins   HOU   WR         8300    21.7      22.0 
-    #> 2 11192363  Ezekiel Elliott   DAL   RB         7700    21.9      21.5 
-    #> 3 11192722  Leonard Fournette JAX   RB         7100    19.2      20.5 
-    #> 4 11191517  Russell Wilson    SEA   QB         6200    23.2      22.7 
-    #> 5 11191547  Mark Ingram       NO    RB         5700    16.7      18.1 
-    #> 6 11192276  Devin Funchess    CAR   WR         5200    12.4      14.5 
-    #> 7 11191401  Danny Amendola    MIA   WR         4200    11.5      12.9 
-    #> 8 11193209  Eagles            PHI   DST        3000    10.8      11.2 
-    #> 9 11192493  Hunter Henry      LAC   TE         2500     9.06      9.19
+    #> 1 11191729  Le'Veon Bell      PIT   RB         9400    24.7      25.8 
+    #> 2 11192363  Ezekiel Elliott   DAL   RB         7700    21.9      21.4 
+    #> 3 11191859  Odell Beckham Jr. NYG   WR         7000    18.5      18.6 
+    #> 4 11191791  Robert Woods      LAR   WR         6200    15.1      17.0 
+    #> 5 11191517  Russell Wilson    SEA   QB         6200    23.2      23.6 
+    #> 6 11191735  Carlos Hyde       CLE   RB         4500    14.9      15.7 
+    #> 7 11191401  Danny Amendola    MIA   WR         4200    11.5      12.5 
+    #> 8 11192493  Hunter Henry      LAC   TE         2500     9.06      8.95
+    #> 9 11191335  Bears             CHI   DST        2300     8.62     10.7 
     #> 
     #> [[5]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3      26.2 
-    #> 4 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11193209  Eagles         PHI   DST        3000    10.8      11.2 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11192493  Hunter Henry   LAC   TE         2500     9.06      9.19
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown    PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700    26.3       25.2
+    #> 4 11191538  Travis Kelce     KC    TE         6400    16.4       17.8
+    #> 5 11191680  Chris Thompson   WAS   RB         4700    15.9       16.5
+    #> 6 11192176  Sterling Shepard NYG   WR         4500    14.0       13.5
+    #> 7 11191399  Ted Ginn Jr.     NO    WR         4300    12.0       12.5
+    #> 8 11191868  Kapri Bibbs      WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears            CHI   DST        2300     8.62      10.7
 
 You can also provide a vector of individual `max_exposure` for every
 player. I find it is typically easiest to add a column to your data
@@ -341,73 +341,73 @@ optimize_generic(data, model, L = 5, max_exposure = data$exposure)
 
     #> [[1]]
     #> # A tibble: 9 × 7
-    #>   player_id player           team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      27.2
-    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.0
-    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      26.2
-    #> 4 11191547  Mark Ingram      NO    RB         5700     16.7      18.1
-    #> 5 11191861  Jarvis Landry    CLE   WR         5500     16.4      18.6
-    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      13.2
-    #> 7 11191619  Jack Doyle       IND   TE         3600     11.6      11.9
-    #> 8 11193209  Eagles           PHI   DST        3000     10.8      11.2
-    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      12.9
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3       25.2
+    #> 4 11191538  Travis Kelce   KC    TE         6400    16.4       17.8
+    #> 5 11192302  Cooper Kupp    LAR   WR         5200    12.8       14.6
+    #> 6 11191680  Chris Thompson WAS   RB         4700    15.9       16.5
+    #> 7 11193143  Mohamed Sanu   ATL   WR         3800    11.4       11.7
+    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears          CHI   DST        2300     8.62      10.7
     #> 
     #> [[2]]
     #> # A tibble: 9 × 7
     #>   player_id player         team  position salary fpts_avg fpts_proj
     #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300     26.5      27.2
-    #> 2 11191533  Antonio Brown  PIT   WR         8600     24.6      25.0
-    #> 3 11192749  Tyreek Hill    KC    WR         6500     17.2      18.8
-    #> 4 11191547  Mark Ingram    NO    RB         5700     16.7      18.1
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500     16.4      18.6
-    #> 6 11191365  Josh McCown    NYJ   QB         4800     17.5      17.9
-    #> 7 11191619  Jack Doyle     IND   TE         3600     11.6      11.9
-    #> 8 11193209  Eagles         PHI   DST        3000     10.8      11.2
-    #> 9 11191868  Kapri Bibbs    WAS   RB         3000     13.6      12.9
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
+    #> 3 11191538  Travis Kelce   KC    TE         6400    16.4       17.8
+    #> 4 11191517  Russell Wilson SEA   QB         6200    23.2       23.6
+    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4       15.7
+    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9       15.7
+    #> 7 11191401  Danny Amendola MIA   WR         4200    11.5       12.5
+    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears          CHI   DST        2300     8.62      10.7
     #> 
     #> [[3]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3      26.2 
-    #> 4 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11191619  Jack Doyle     IND   TE         3600    11.6      11.9 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11191338  Cowboys        DAL   DST        2300     7.19      8.60
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300     26.5      27.0
+    #> 2 11191533  Antonio Brown    PIT   WR         8600     24.6      25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700     26.3      25.2
+    #> 4 11191538  Travis Kelce     KC    TE         6400     16.4      17.8
+    #> 5 11191680  Chris Thompson   WAS   RB         4700     15.9      16.5
+    #> 6 11192176  Sterling Shepard NYG   WR         4500     14.0      13.5
+    #> 7 11193143  Mohamed Sanu     ATL   WR         3800     11.4      11.7
+    #> 8 11193209  Eagles           PHI   DST        3000     10.8      11.7
+    #> 9 11191868  Kapri Bibbs      WAS   RB         3000     13.6      14.4
     #> 
     #> [[4]]
     #> # A tibble: 9 × 7
     #>   player_id player         team  position salary fpts_avg fpts_proj
     #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 4 11191517  Russell Wilson SEA   QB         6200    23.2      22.7 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11191362  Ravens         BAL   DST        3800    11.7      11.9 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11192493  Hunter Henry   LAC   TE         2500     9.06      9.19
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       25.1
+    #> 3 11191538  Travis Kelce   KC    TE         6400    16.4       17.8
+    #> 4 11191517  Russell Wilson SEA   QB         6200    23.2       23.6
+    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4       15.7
+    #> 6 11191680  Chris Thompson WAS   RB         4700    15.9       16.5
+    #> 7 11193143  Mohamed Sanu   ATL   WR         3800    11.4       11.7
+    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears          CHI   DST        2300     8.62      10.7
     #> 
     #> [[5]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5      27.2 
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6      25.0 
-    #> 3 11192767  Deshaun Watson HOU   QB         6700    26.3      26.2 
-    #> 4 11192749  Tyreek Hill    KC    WR         6500    17.2      18.8 
-    #> 5 11191861  Jarvis Landry  CLE   WR         5500    16.4      18.6 
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9      14.9 
-    #> 7 11193209  Eagles         PHI   DST        3000    10.8      11.2 
-    #> 8 11191868  Kapri Bibbs    WAS   RB         3000    13.6      12.9 
-    #> 9 11192493  Hunter Henry   LAC   TE         2500     9.06      9.19
+    #>   player_id player           team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II   LAR   RB         9300    26.5       27.0
+    #> 2 11191533  Antonio Brown    PIT   WR         8600    24.6       25.1
+    #> 3 11192767  Deshaun Watson   HOU   QB         6700    26.3       25.2
+    #> 4 11191538  Travis Kelce     KC    TE         6400    16.4       17.8
+    #> 5 11191680  Chris Thompson   WAS   RB         4700    15.9       16.5
+    #> 6 11192176  Sterling Shepard NYG   WR         4500    14.0       13.5
+    #> 7 11191399  Ted Ginn Jr.     NO    WR         4300    12.0       12.5
+    #> 8 11191868  Kapri Bibbs      WAS   RB         3000    13.6       14.4
+    #> 9 11191335  Bears            CHI   DST        2300     8.62      10.7
 
 ### Adding Randomness to Projections
 
@@ -431,70 +431,70 @@ optimize_generic(data, model, L = 5, randomness = randomness)
 
     #> [[1]]
     #> # A tibble: 9 × 7
-    #>   player_id player           team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>            <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11191533  Antonio Brown    PIT   WR         8600    24.6       51.0
-    #> 2 11192632  Alvin Kamara     NO    RB         8500    19.9       42.0
-    #> 3 11191393  Larry Fitzgerald ARI   WR         6600    17.2       36.2
-    #> 4 11191395  Philip Rivers    LAC   QB         6400    18.7       51.9
-    #> 5 11191915  Marqise Lee      JAX   WR         4900     9.55      33.4
-    #> 6 11193139  Mike Wallace     PHI   WR         4200    10.5       38.0
-    #> 7 11191367  Frank Gore       MIA   RB         3700    11.2       37.3
-    #> 8 11191354  Steelers         PIT   DST        3400     7.94      28.8
-    #> 9 11192330  Jevoni Robinson  HOU   TE         2500     0         28.1
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       35.1
+    #> 2 11192767  Deshaun Watson HOU   QB         6700    26.3       32.1
+    #> 3 11191649  Josh Gordon    CLE   WR         5800    12.1       26.1
+    #> 4 11192844  D'Onta Foreman HOU   RB         4300     5.8       28.3
+    #> 5 11191913  Javorius Allen BAL   RB         4200    10.4       33.8
+    #> 6 11192401  Trent Taylor   SF    WR         3600     6.47      26.8
+    #> 7 11192088  Tevin Jones    PIT   WR         3000     0         29.5
+    #> 8 11191342  Titans         TEN   DST        2900     6.17      26.3
+    #> 9 11191427  Andrew DePaola OAK   TE         2500     0         27.6
     #> 
     #> [[2]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192079  Davante Adams  GB    WR         7800    16.1       40.6
-    #> 2 11193133  Julio Jones    ATL   WR         7600    17.3       33.9
-    #> 3 11191363  Tom Brady      NE    QB         7200    20.7       43.4
-    #> 4 11192758  Dalvin Cook    MIN   RB         6200    17.4       31.1
-    #> 5 11193135  Alshon Jeffery PHI   WR         6000    12.9       43.2
-    #> 6 11191512  Travaris Cadet BUF   RB         4000     4.17      33.7
-    #> 7 11191563  Kendall Wright MIN   WR         3600     8.09      31.7
-    #> 8 11191336  Bengals        CIN   DST        2700     6.31      35.0
-    #> 9 11192918  Kevin Rader    GB    TE         2500     0         34.4
+    #>   player_id player          team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>           <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11191729  Le'Veon Bell    PIT   RB         9400    24.7       33.8
+    #> 2 11191533  Antonio Brown   PIT   WR         8600    24.6       42.1
+    #> 3 11193094  Carson Wentz    PHI   QB         6400    23.4       34.1
+    #> 4 11193137  Nelson Agholor  PHI   WR         5900    11.8       29.9
+    #> 5 11193107  Tevin Coleman   ATL   RB         4400    11.0       35.1
+    #> 6 11191741  Giovani Bernard CIN   RB         4400     9.67      37.1
+    #> 7 11191928  Martavis Bryant OAK   WR         4200     9.27      30.1
+    #> 8 11192965  Emanuel Byrd    GB    TE         2500     5.1       35.5
+    #> 9 11191344  Chiefs          KC    DST        2300     7.71      30.8
     #> 
     #> [[3]]
     #> # A tibble: 9 × 7
-    #>   player_id player            team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>             <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II    LAR   RB         9300    26.5       36.4
-    #> 2 11191533  Antonio Brown     PIT   WR         8600    24.6       41.7
-    #> 3 11192002  Melvin Gordon III LAC   RB         6800    18.4       36.5
-    #> 4 11193135  Alshon Jeffery    PHI   WR         6000    12.9       33.0
-    #> 5 11192050  Robby Anderson    NYJ   WR         5700    13.1       33.2
-    #> 6 11191467  Case Keenum       DEN   QB         5100    16.7       35.5
-    #> 7 11192851  Saeed Blacknall   OAK   WR         3000     0         32.7
-    #> 8 11191733  A.J. Derby        MIA   TE         2500     5.13      29.9
-    #> 9 11191352  Jets              NYJ   DST        2400     4.44      31.4
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11193133  Julio Jones    ATL   WR         7600    17.3       29.9
+    #> 2 11192767  Deshaun Watson HOU   QB         6700    26.3       35.4
+    #> 3 11192276  Devin Funchess CAR   WR         5200    12.4       34.0
+    #> 4 11192296  Kenny Golladay DET   WR         4800     8.6       31.7
+    #> 5 11192596  Evan Engram    NYG   TE         4700    11.6       32.9
+    #> 6 11191526  Bilal Powell   NYJ   RB         4700    10.2       29.5
+    #> 7 11191795  James White    NE    RB         4000    10.4       30.4
+    #> 8 11191339  Broncos        DEN   DST        3300     6.88      27.2
+    #> 9 11192832  Michael Thomas LAR   WR         3000     1.79      30.6
     #> 
     #> [[4]]
     #> # A tibble: 9 × 7
-    #>   player_id player          team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>           <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192079  Davante Adams   GB    WR         7800    16.1       43.4
-    #> 2 11192767  Deshaun Watson  HOU   QB         6700    26.3       46.3
-    #> 3 11193183  Zach Ertz       PHI   TE         6600    14.4       40.2
-    #> 4 11192038  Brandin Cooks   LAR   WR         5600    14.0       36.6
-    #> 5 11191936  DeVante Parker  MIA   WR         5300    10         38.4
-    #> 6 11192276  Devin Funchess  CAR   WR         5200    12.4       40.0
-    #> 7 11192997  Chris Carson    SEA   RB         4500     9.92      31.0
-    #> 8 11191574  Derrick Coleman ARI   RB         3000     0.27      39.7
-    #> 9 11191355  Chargers        LAC   DST        2800     9.94      28.7
+    #>   player_id player         team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11191372  Aaron Rodgers  GB    QB         7500    20.8       40.0
+    #> 2 11191493  LeSean McCoy   BUF   RB         6000    17.3       32.9
+    #> 3 11192038  Brandin Cooks  LAR   WR         5600    14.0       28.5
+    #> 4 11192378  Derrick Henry  TEN   RB         5400     9.94      32.9
+    #> 5 11192596  Evan Engram    NYG   TE         4700    11.6       33.2
+    #> 6 11191348  Vikings        MIN   DST        3500     6.83      34.7
+    #> 7 11192258  Jaydon Mickens JAX   WR         3000     2.48      29.9
+    #> 8 11192649  Jake Wieneke   MIN   WR         3000     0         32.0
+    #> 9 11192778  Dalton Schultz DAL   TE         2500     0         35.5
     #> 
     #> [[5]]
     #> # A tibble: 9 × 7
-    #>   player_id player         team  position salary fpts_avg fpts_proj
-    #>   <chr>     <chr>          <chr> <chr>     <int>    <dbl>     <dbl>
-    #> 1 11192254  Todd Gurley II LAR   RB         9300    26.5       41.8
-    #> 2 11191533  Antonio Brown  PIT   WR         8600    24.6       46.8
-    #> 3 11192140  Michael Thomas NO    WR         7800    17.6       36.3
-    #> 4 11191547  Mark Ingram    NO    RB         5700    16.7       31.2
-    #> 5 11191467  Case Keenum    DEN   QB         5100    16.7       45.3
-    #> 6 11191735  Carlos Hyde    CLE   RB         4500    14.9       34.8
-    #> 7 11191863  Paul Turner    NE    WR         3000     0         28.1
-    #> 8 11191528  Garrett Celek  SF    TE         2600     4.91      30.9
-    #> 9 11191338  Cowboys        DAL   DST        2300     7.19      24.9
+    #>   player_id player                 team  position salary fpts_avg fpts_proj
+    #>   <chr>     <chr>                  <chr> <chr>     <int>    <dbl>     <dbl>
+    #> 1 11191754  David Johnson          ARI   RB         8800    14         32.8
+    #> 2 11191533  Antonio Brown          PIT   WR         8600    24.6       37.6
+    #> 3 11191472  Cam Newton             CAR   QB         6900    20.7       41.1
+    #> 4 11192387  Adam Thielen           MIN   WR         6900    15.2       33.9
+    #> 5 11193183  Zach Ertz              PHI   TE         6600    14.4       26.6
+    #> 6 11192954  Joe Williams           SF    RB         3500     0         28.7
+    #> 7 11192008  Chris Moore            BAL   WR         3000     5.07      36.7
+    #> 8 11192561  Damore'ea Stringfellow SEA   WR         3000     0         43.0
+    #> 9 11191345  Raiders                OAK   DST        2200     4.38      18.8
