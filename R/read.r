@@ -94,6 +94,12 @@ read_fd <- function(path) {
   colnames(df_tidy) <- c("player_id", "player", "team", "opp_team", "location",
                          "position", "salary", "fpts_avg", "injury", "fpts_proj")
 
+  # split positions for players that can play multiple, ex. 1B/3B -> c("1B", "3B")
+  df_tidy[["position"]] <- strsplit(df_tidy[["position"]], "/")
+
+  # expand multiple position players
+  df_tidy <- unnest_col(df_tidy, "position")
+
   # fix injury NAs
   df_tidy[["injury"]] <- with(df_tidy, ifelse(nchar(injury) == 0, NA_character_, injury))
 
