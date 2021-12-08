@@ -26,7 +26,7 @@ The goal of coach is to provide functions to optimize lineups for a variety of s
 You can install the released version of coach from [github](https://github.com/zamorarr/coach) with:
 
 ``` r
-remotes::install_github("zamorarr/coach")
+remotes::install_github("dfs-with-r/coach")
 ```
 
 ## Usage
